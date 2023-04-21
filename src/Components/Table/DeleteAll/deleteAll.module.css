@@ -1,0 +1,12 @@
+.delete {
+    color: var(--btn--delete-all);
+    border-color: var(--black);
+    color: var(--btn-create-text);
+    background-color: var(--btn-delete);
+
+}
+
+.delete:hover {
+    background-color: var(--btn-delete-hover);
+    border: 1px solid var(--btn-border);
+}

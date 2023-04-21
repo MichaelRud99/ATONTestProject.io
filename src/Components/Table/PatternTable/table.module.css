@@ -1,0 +1,85 @@
+.frame {
+    border-color: var(--form-input-border);
+    border-style: solid;
+    border-radius: 23px;
+    border-width: 3px;
+    background-color: var(--list-background);
+}
+
+.table {
+    width: 1410px;
+    color: var(--white-almost);
+    border-collapse: collapse;
+    font-size: 15px;
+    margin: auto;
+    padding: 10px;
+    background-color: var(--list-background-darked);
+    border-radius: 20px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.divBtn {
+    margin: 10px 25px 5px 0px;
+    height: 27px;
+}
+
+.length {
+    width: 385px;
+}
+
+.id {
+    width: 60px;
+    padding: 5px;
+}
+
+.yearRealeas {
+    width: 90px;
+}
+
+.fastView {
+    width: 65px;
+    padding: 5px;
+}
+
+.delete {
+    width: 60px;
+    padding: 5px;
+}
+
+td div {
+    margin-left: 55px;
+}
+
+th {
+    border: 0px;
+    border-bottom: 1px;
+    border-top: 1px;
+    border-right: 1px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+
+th:nth-child(7) {
+    border-right: 0px;
+}
+
+.notFound {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    margin: 10px auto;
+    padding: 0%;
+}
+
+@media (max-width:1800px) {
+
+    .table {
+        width: auto;
+    }
+
+}

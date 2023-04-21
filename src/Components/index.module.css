@@ -1,0 +1,55 @@
+body {
+   font-family: "Roboto", Times, serif;
+   font-size: 16px;
+   line-height: 27px;
+   font-weight: 300;
+   margin: 0%;
+   background-color: var(--white-almost);
+   background-image: url("../../public/img/backgroundImg.jpg");
+   background-size: cover;
+}
+
+.transitionBtn {
+   transition-property: background-color, border-color;
+   transition-duration: 0.5s;
+   transition-delay: 0s;
+   transition-timing-function: linear;
+}
+
+.transitionColor {
+   transition-property: color;
+   transition-duration: 0.5s;
+   transition-delay: 0s;
+   transition-timing-function: linear;
+}
+
+.transitionOpacity {
+   transition-property: opacity;
+   transition-duration: 1s;
+   transition-delay: 0s;
+   transition-timing-function: linear;
+}
+
+a {
+   text-decoration: none;
+   padding: 0%;
+}
+
+.flex {
+   display: flex;
+   flex-direction: row;
+   padding: 0%;
+   margin: 10px;
+}
+
+@media (max-width: 1800px) {
+   body {
+      background-size: auto;
+      font-size: 14px;
+   }
+
+   .flex {
+      margin: 0px;
+      flex-direction: column;
+   }
+}

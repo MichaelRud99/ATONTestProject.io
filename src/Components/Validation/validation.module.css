@@ -1,0 +1,49 @@
+.input {
+    width: 330px;
+    height: 30px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 20px;
+    color: var(--form-input);
+    padding: 20px 0px 20px 20px;
+    margin: 0%;
+    background-color: var(--form-input-border);
+    border-radius: 10px;
+    border-color: var(--form-input-border);
+    border-style: solid;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.input:hover {
+    background-color: var(--form-input-hover);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--form-input-focus-border);
+}
+
+.error {
+    outline: none;
+    border-color: var(--error);
+    background-color: var(--error-background);
+}
+
+.error:focus {
+    font-size: 18px;
+    border-color: var(--error);
+    background-color: var(--form-input-border);
+}
+
+
+.validation {
+    font-size: 16px;
+    color: var(--error);
+}
+
+@media (max-width:1800px) {
+    .input {
+        width: 270px;
+    }
+}

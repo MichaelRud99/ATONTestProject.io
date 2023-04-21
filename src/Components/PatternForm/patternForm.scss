@@ -1,0 +1,160 @@
+@mixin marginPaddingZero {
+   margin: 0%;
+   padding: 0%;
+}
+@mixin size($width, $height) {
+   width: $width;
+   height: $height;
+}
+@mixin border($color) {
+   border-radius: 10px;
+   border-style: solid;
+   border-color: $color;
+}
+
+.body {
+   position: fixed;
+   top: 30vh;
+   left: 70vh;
+   right: 0px;
+   bottom: 0px;
+   background-color: var(--form-background);
+   padding: 10px;
+   @include size(700px, 420px);
+   @include border(transparent);
+
+   @media (max-width: 1800px) {
+      top: 20vh;
+      left: 10vh;
+      @include size(570px, 420px);
+      margin: auto;
+   }
+}
+
+.form {
+   display: grid;
+   justify-content: start;
+   grid-template-columns: 1fr 1fr;
+   gap: 30px;
+}
+.distance {
+   text-align: left;
+   margin-left: 10px;
+   color: var(--white);
+   @include marginPaddingZero();
+}
+
+.btn {
+   cursor: pointer;
+   background-color: transparent;
+   @include border(transparent);
+   @include marginPaddingZero();
+   @include size(35px, 30px);
+}
+
+.add {
+   cursor: pointer;
+   padding: 3px 7px;
+   color: var(--btn-create-text);
+   background-color: var(--btn-create);
+   @include border(var(--black));
+   @include size(130px, 30px);
+}
+
+.add:hover {
+   background-color: var(--btn-create-hover);
+   color: var(--white);
+   @include border(transparent);
+}
+
+.change {
+   color: var(--white);
+   background-color: var(--btn-change);
+   @include border(var(--black));
+}
+
+.change:hover {
+   background-color: var(--btn-change-hover);
+   @include border(var(--btn-border));
+}
+
+.close {
+   display: table-cell;
+   color: var(--white-almost);
+   padding-left: 5px;
+   @include size(30px, 30px);
+}
+
+.close::after {
+   content: "\2716";
+   font-size: 15px;
+}
+
+.close:hover {
+   color: var(--btn-delete-hover);
+}
+
+.move {
+   width: 50px;
+   margin-left: auto;
+}
+
+.btnFooter {
+   display: flex;
+   margin: auto;
+   margin-top: 50px;
+   gap: 70px;
+   grid-column: span 2;
+}
+
+.btnChange {
+   padding-bottom: 0px;
+   padding-top: 0px;
+   height: 28px;
+}
+
+.flex {
+   display: grid;
+   grid-column: span 2;
+   gap: 10px;
+   cursor: pointer;
+   margin-left: 20px;
+}
+
+.addPhoto {
+   display: inline-block;
+   position: fixed;
+   background-image: url(../../../public/img/camera-computer-icons-photography-clip-art-camera-vector-5ad18a93b30fa5.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 100%;
+   object-fit: cover;
+   @include size(30px, 30px);
+}
+
+p {
+   text-align: left;
+}
+
+.paragraf {
+   margin: 0%;
+   padding-left: 45px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   color: var(--white);
+}
+
+.inputImg {
+   height: 30px;
+   opacity: 0;
+   position: absolute;
+   cursor: pointer;
+}
+
+.descriptionParagraf {
+   padding-left: 10px;
+   font-size: 13px;
+   color: var(--description-paragraf);
+   @include marginPaddingZero();
+}

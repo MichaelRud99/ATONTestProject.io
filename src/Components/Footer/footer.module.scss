@@ -1,0 +1,20 @@
+.section {
+   width: 250px;
+   margin: auto;
+}
+.title {
+   color: var(--white);
+   text-align: center;
+}
+h4 + div {
+   justify-content: space-around;
+}
+
+.link {
+   border: 0px;
+   color: var(--white-almost);
+}
+
+.link:hover {
+   color: var(--light-grey);
+}

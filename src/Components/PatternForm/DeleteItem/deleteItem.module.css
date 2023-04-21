@@ -1,0 +1,11 @@
+.delete {
+    border-radius: 10px;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--btn-delete);
+}
+
+.delete:hover {
+    background-color: var(--btn-delete-hover);
+    border-color: var(--btn-border);
+}

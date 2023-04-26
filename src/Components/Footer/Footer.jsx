@@ -4,7 +4,7 @@ const Footer = () => {
    return (
       <section className={footer.section}>
          <h4 className={footer.title}>Created by Michael Rudenok</h4>
-         <div className={index.flex}>
+         <div className={index.flex+" "+ footer.linkContainer}>
             <a
                className={footer.link + " " + index.transitionColor}
                href="https://github.com/MichaelRud99"

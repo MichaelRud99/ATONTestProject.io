@@ -1,13 +1,13 @@
 import validationText from "./validationText/validationText";
 import validationDate from "./validationDate/validationDate";
 
-const validation = (author, track, album, dataRelease) => {
+const validation = (firstName, lastName, email, avatar) => {
    let answer = false;
    if (
-      validationText(author) === true &&
-      validationText(track) === true &&
-      validationText(album) === true &&
-      validationDate(dataRelease) === true
+      validationText(firstName) === true &&
+      validationText(lastName) === true &&
+      validationText(email) === true &&
+      validationDate(avatar) === true
    ) {
       answer = true;
    } else {

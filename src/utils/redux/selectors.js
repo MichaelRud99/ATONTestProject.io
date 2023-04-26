@@ -5,18 +5,30 @@ export const selectorListCompositionData = (state) =>
 export const selectorInterfaceOpen = (state) => state.interfaceActions.open;
 export const selectorInterfaceEdit = (state) => state.interfaceActions.edit;
 export const selectorInterfaceValid = (state) => state.interfaceActions.valid;
+export const selectorInterface = (state) => state.interfaceActions;
 
 export const selectInputFields = createSelector(
    (state) => state.inputFields.albumPhoto,
-   (state) => state.inputFields.album,
-   (state) => state.inputFields.author,
-   (state) => state.inputFields.dataRelease,
-   (state) => state.inputFields.track,
-   (albumPhoto, album, author, dataRelease, track) => ({
-      album: album,
-      author: author,
-      dataRelease: dataRelease,
-      track: track,
+   (state) => state.inputFields.email,
+   (state) => state.inputFields.firstName,
+   (state) => state.inputFields.avatar,
+   (state) => state.inputFields.lastName,
+   (albumPhoto, email, firstName, avatar, lastName) => ({
+      email: email,
+      firstName: firstName,
+      avatar: avatar,
+      lastName: lastName,
       albumPhoto: albumPhoto,
+   })
+);
+
+export const selectLoginFields = createSelector(
+   (state) => state.loginFields.username,
+   (state) => state.loginFields.email,
+   (state) => state.loginFields.password,
+   (username, email, password) => ({
+      username: username,
+      email: email,
+      password: password,
    })
 );

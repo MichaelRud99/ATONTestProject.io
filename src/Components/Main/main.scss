@@ -20,9 +20,7 @@
    align-items: center;
 
    @media (max-width: 1800px) {
-      .flex {
-         margin: 0%;
-      }
+      margin: 0%;
    }
 }
 
@@ -103,4 +101,28 @@
       @include fontSizeWeight(14px, 400);
       @include size(250px, 20px);
    }
+}
+
+.registrationSuccess {
+   position: fixed;
+   color: white;
+   bottom: 5%;
+   right: 2%;
+   text-align: center;
+   background-color: var(--form-background);
+   border-radius: 10px;
+   justify-content: space-between;
+   @include size(300px, auto);
+   @include border(10px, transparent);
+}
+
+.registrationSuccess div {
+   width: 50px;
+   height: 50px;
+   background-image: url(../../../public/img/pngwing.com.png);
+   background-size: cover;
+}
+
+.registrationSuccess p {
+   margin: auto;
 }

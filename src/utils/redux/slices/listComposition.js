@@ -5,7 +5,6 @@ export const listCompositionSlice = createSlice({
    initialState: {
       data: [],
       fail: false,
-      updateData: false,
       gif: [],
       gifCompress: [],
    },
@@ -14,13 +13,9 @@ export const listCompositionSlice = createSlice({
          state.data = data.payload;
       },
       readData: () => {},
-      submit: (state, сomposition) => {
+      //Отправляем на сервер данные
+      registration: (state, сomposition) => {
          state.сomposition = сomposition.payload;
-      },
-      submtiSuccess: (state, arr) => {
-         const composition = arr.payload;
-         state.data.splice(state.data.length, 0, composition);
-         state.updateData = !state.updateData;
       },
       requestFail: (state) => {
          state.fail = !state.fail;
@@ -34,7 +29,6 @@ export const listCompositionSlice = createSlice({
          const index = arr.payload[1];
          state.data.splice(index, 1);
          state.data.splice(index, 0, composition);
-         state.updateData = !state.updateData;
       },
       delet: (state, index) => {
          state.сomposition = index.payload;
@@ -42,12 +36,12 @@ export const listCompositionSlice = createSlice({
       deleteSuccess: (state, arr) => {
          const index = arr.payload[1];
          state.data.splice(index, 1);
-         state.updateData = !state.updateData;
       },
-      clearData: () => {},
+      clearData: (state) => {
+         state.data = [];
+      },
       clearDataSuccess: (state) => {
          state.data = [];
-         state.updateData = !state.updateData;
       },
       fileGif: (state, gif) => {
          state.gif = gif.payload;
@@ -61,8 +55,7 @@ export const listCompositionSlice = createSlice({
 export const {
    writeData,
    readData,
-   submit,
-   submtiSuccess,
+   registration,
    requestFail,
    edit,
    editSuccess,

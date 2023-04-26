@@ -14,7 +14,7 @@ import DeleteItem from "./DeleteItem/DeleteItem";
 import DownloadPhoto from "./DownloadPhoto/DownloadPhoto";
 
 import { useActions } from "../Hooks/useActotion";
-import { inputFieldsSlice } from "../../utils/redux/slices/inputFieldsSlice";
+import { editFieldsSlice } from "../../utils/redux/slices/editFieldsSlice";
 import { interfaceActionSlice } from "../../utils/redux/slices/interfaceActionSlice";
 import {
    selectInputFields,
@@ -26,19 +26,19 @@ const PatternForm = ({
    setStorage,
    index,
    setOpen,
-   author,
-   dataRelease,
-   track,
-   album,
-   submit,
+   firstName,
+   avatar,
+   lastName,
+   email,
+   registration,
 }) => {
    const slice = useActions(interfaceActionSlice.actions);
-   const outputFields = useActions(inputFieldsSlice.actions);
+   const outputFields = useActions(editFieldsSlice.actions);
    const inputFields = useSelector(selectInputFields);
-   const outputAlbum = inputFields.album;
-   const outputAuthor = inputFields.author;
-   const outputDataRelease = inputFields.dataRelease;
-   const outputTrack = inputFields.track;
+   const outputAlbum = inputFields.email;
+   const outputAuthor = inputFields.firstName;
+   const outputDataRelease = inputFields.avatar;
+   const outputTrack = inputFields.lastName;
    const edit = useSelector(selectorInterfaceEdit);
 
    const close = () => {
@@ -87,7 +87,7 @@ const PatternForm = ({
                </div>
                <ValidText
                   validationText={validationText}
-                  initialValue={author}
+                  initialValue={firstName}
                   outputValue={outputAuthor}
                   setValue={outputFields.enterAuthor}
                />
@@ -99,7 +99,7 @@ const PatternForm = ({
                </div>
                <ValidDate
                   validationDate={validationDate}
-                  initialValue={dataRelease}
+                  initialValue={avatar}
                   outputValue={outputDataRelease}
                   setValue={outputFields.enterDataRelease}
                />
@@ -110,7 +110,7 @@ const PatternForm = ({
                </div>
                <ValidText
                   validationText={validationText}
-                  initialValue={track}
+                  initialValue={lastName}
                   outputValue={outputTrack}
                   setValue={outputFields.enterTrack}
                />
@@ -122,7 +122,7 @@ const PatternForm = ({
                </div>
                <ValidText
                   validationText={validationText}
-                  initialValue={album}
+                  initialValue={email}
                   outputValue={outputAlbum}
                   setValue={outputFields.enterAlbum}
                />
@@ -131,7 +131,7 @@ const PatternForm = ({
             <div className={patternForm.btnFooter}>
                {edit === false ? (
                   <input
-                     onClick={submit}
+                     onClick={registration}
                      className={
                         main.btn +
                         " " +
@@ -145,7 +145,7 @@ const PatternForm = ({
                ) : (
                   <>
                      <Link
-                        onClick={submit}
+                        onClick={registration}
                         className={
                            main.btn +
                            " " +

@@ -23,10 +23,18 @@ const Search = ({
 
    const submit = (event) => {
       searchValue = searchValue.toLowerCase();
-      const searchId = compositions.filter((element) => element.id === searchValue);
-      const SearchAuthor = compositions.map((value) => value.author.toLowerCase());
-      const SearchTrack = compositions.map((value) => value.track.toLowerCase());
-      const SearchAlbum = compositions.map((value) => value.album.toLowerCase());
+      const searchId = compositions.filter(
+         (element) => element.id === searchValue
+      );
+      const SearchAuthor = compositions.map((value) =>
+         value.firstName.toLowerCase()
+      );
+      const SearchTrack = compositions.map((value) =>
+         value.lastName.toLowerCase()
+      );
+      const SearchAlbum = compositions.map((value) =>
+         value.email.toLowerCase()
+      );
       let currentStorage = [];
       let answer = [];
       let uniqueArray = [];
@@ -42,7 +50,7 @@ const Search = ({
          uniqueArray = searchLetters(searchValue, SearchAuthor);
          for (let w = 0; w < uniqueArray.length; w++) {
             const storageSearch = compositions.filter(
-               (element) => element.author.toLowerCase() === uniqueArray[w]
+               (element) => element.firstName.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;
@@ -54,7 +62,7 @@ const Search = ({
          uniqueArray = searchLetters(searchValue, SearchTrack);
          for (let w = 0; w < uniqueArray.length; w++) {
             const storageSearch = compositions.filter(
-               (element) => element.track.toLowerCase() === uniqueArray[w]
+               (element) => element.lastName.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;
@@ -66,7 +74,7 @@ const Search = ({
          uniqueArray = searchLetters(searchValue, SearchAlbum);
          for (let w = 0; w < uniqueArray.length; w++) {
             const storageSearch = compositions.filter(
-               (element) => element.album.toLowerCase() === uniqueArray[w]
+               (element) => element.email.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;

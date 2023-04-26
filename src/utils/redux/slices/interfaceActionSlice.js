@@ -2,7 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const interfaceActionSlice = createSlice({
    name: "interfaceActions",
-   initialState: { edit: false, open: true, valid: true },
+   initialState: {
+      edit: false,
+      open: true,
+      valid: true,
+      openRegistration: false,
+      successRegistraton: false,
+   },
    reducers: {
       editTrue: (state) => {
          state.edit = true;
@@ -22,6 +28,14 @@ export const interfaceActionSlice = createSlice({
       validFalse: (state) => {
          state.valid = false;
       },
+
+      openRegistrations: (state, bool) => {
+         state.openRegistration = bool.payload;
+      },
+
+      successRegistraton: (state) => {
+         state.successRegistraton = !state.successRegistraton;
+      },
    },
 });
 
@@ -32,6 +46,8 @@ export const {
    openFalse,
    validTrue,
    validFalse,
+   openRegistrations,
+   successRegistraton,
 } = interfaceActionSlice.actions;
 
 export default interfaceActionSlice.reducer;

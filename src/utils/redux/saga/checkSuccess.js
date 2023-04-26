@@ -1,9 +1,17 @@
 import { put } from "redux-saga/effects";
 import { requestFail } from "../slices/listComposition";
 
-export function* checkSuccess(requestAnswer, actionSuccess, value) {
+export function* checkSuccess(
+   requestAnswer,
+   messageSuccess,
+   value,
+   actionSuccess = undefined
+) {
    if (requestAnswer <= 400) {
-      yield put(actionSuccess(value.payload));
+      if (actionSuccess !== undefined) {
+         yield put(actionSuccess(value.payload));
+      }
+      yield put(messageSuccess());
    } else {
       yield put(requestFail());
    }

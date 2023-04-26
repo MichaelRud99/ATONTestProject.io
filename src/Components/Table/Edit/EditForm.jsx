@@ -2,7 +2,7 @@ import PatternForm from "../../PatternForm/PatternForm";
 import { useSelector } from "react-redux";
 import editValidation from "../../../utils/validation/editValidation";
 import validation from "../../../utils/validation/validation";
-import { inputFieldsSlice } from "../../../utils/redux/slices/inputFieldsSlice";
+import { editFieldsSlice } from "../../../utils/redux/slices/editFieldsSlice";
 import { useActions } from "../../Hooks/useActotion";
 import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
 import { interfaceActionSlice } from "../../../utils/redux/slices/interfaceActionSlice";
@@ -11,42 +11,39 @@ import { selectInputFields } from "../../../utils/redux/selectors";
 const EditForm = ({
    storage,
    setStorage,
-   author,
-   dataRelease,
-   track,
-   album,
+   firstName,
+   avatar,
+   lastName,
+   email,
    index,
    setOpen,
 }) => {
    const slice = useActions([
-      inputFieldsSlice.actions,
+      editFieldsSlice.actions,
       listCompositionSlice.actions,
       interfaceActionSlice.actions,
    ]);
 
    const inputFields = useSelector(selectInputFields);
-   let editAlbum = inputFields.album;
-   let editAuthor = inputFields.author;
-   let editDataRelease = inputFields.dataRelease;
-   let editTrack = inputFields.track;
+   let editAlbum = inputFields.email;
+   let editAuthor = inputFields.firstName;
+   let editDataRelease = inputFields.avatar;
+   let editTrack = inputFields.lastName;
    const cloneStorage = structuredClone(storage);
 
    const submit = (event) => {
-      editAuthor = editValidation(editAuthor, author);
-      editTrack = editValidation(editTrack, track);
-      editAlbum = editValidation(editAlbum, album);
-      editDataRelease = editValidation(editDataRelease, dataRelease);
+      editAuthor = editValidation(editAuthor, firstName);
+      editTrack = editValidation(editTrack, lastName);
+      editAlbum = editValidation(editAlbum, email);
+      editDataRelease = editValidation(editDataRelease, avatar);
 
       if (
          validation(editAuthor, editTrack, editAlbum, editDataRelease) === true
       ) {
-         cloneStorage[index].author = editValidation(editAuthor, author);
-         cloneStorage[index].track = editValidation(editTrack, track);
-         cloneStorage[index].album = editValidation(editAlbum, album);
-         cloneStorage[index].dataRelease = editValidation(
-            editDataRelease,
-            dataRelease
-         );
+         cloneStorage[index].firstName = editValidation(editAuthor, firstName);
+         cloneStorage[index].lastName = editValidation(editTrack, lastName);
+         cloneStorage[index].email = editValidation(editAlbum, email);
+         cloneStorage[index].avatar = editValidation(editDataRelease, avatar);
 
          setStorage(cloneStorage);
          slice[0].enterClear();
@@ -63,10 +60,10 @@ const EditForm = ({
       <>
          <PatternForm
             storage={storage}
-            author={author}
-            dataRelease={dataRelease}
-            track={track}
-            album={album}
+            firstName={firstName}
+            avatar={avatar}
+            lastName={lastName}
+            email={email}
             submit={submit}
             index={index}
             setStorage={setStorage}

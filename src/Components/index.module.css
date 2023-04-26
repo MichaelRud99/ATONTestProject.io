@@ -30,6 +30,13 @@ body {
    transition-timing-function: linear;
 }
 
+.transitionColorFontSize {
+   transition-property: color, font-size;
+   transition-duration: 0.1s;
+   transition-delay: 0s;
+   transition-timing-function: ease-in-out;
+}
+
 a {
    text-decoration: none;
    padding: 0%;

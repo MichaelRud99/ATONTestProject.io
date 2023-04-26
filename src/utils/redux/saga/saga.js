@@ -1,35 +1,28 @@
-import {
-   put,
-   call,
-   takeLatest,
-   select,
-} from "redux-saga/effects";
+import { put, call, takeLatest, select } from "redux-saga/effects";
 import checkSuccess from "./checkSuccess";
 import requests from "../../api/requests";
-import requestStorageComposition from "../../api/requestStorageComposition";
+import loadDataReguest from "../../api/loadDataReguest";
 import requestImgCompression from "../../api/requestImgCompression";
-
+import registrationReguest from "../../api/registrationReguest";
 import requestDelete from "../../api/requestDelete.js";
 
 import {
    writeData,
    readData,
-   submit,
-   submtiSuccess,
+   registration,
    edit,
    editSuccess,
    delet,
    deleteSuccess,
-   clearData,
-   clearDataSuccess,
    fileGif,
    compressionGif,
 } from "../slices/listComposition";
+import { successRegistraton } from "../slices/interfaceActionSlice";
 
 let requestAnswer = 0;
 
-export function* read() {
-   const data = yield call(requestStorageComposition);
+export function* read(number) {
+   const data = yield call(loadDataReguest, number.payload);
    yield put(writeData(data));
 }
 
@@ -40,24 +33,27 @@ export function* compressFile() {
    yield put(compressionGif(compressedFile));
 }
 
-export function* writeNewComposition(value) {
-   yield requests(value.payload, "POST").then(
+export function* registrationUser(value) {
+   debugger;
+   value = JSON.stringify(value.payload);
+   yield registrationReguest(value, "POST").then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
-   yield checkSuccess(requestAnswer, submtiSuccess, value);
+   // console.log(requestAnswer);
+   yield checkSuccess(requestAnswer, successRegistraton, value);
 }
 
-export function* clearDataGenerator() {
-   const data = yield call(requestStorageComposition);
-   yield data.forEach((value) => {
-      requestDelete(value.id, false).then(
-         (result) => (requestAnswer = result),
-         (err) => (requestAnswer = err)
-      );
-   });
-   yield checkSuccess(requestAnswer, clearDataSuccess, []);
-}
+// export function* clearDataGenerator() {
+//    const data = yield call(loadDataReguest);
+//    yield data.forEach((value) => {
+//       requestDelete(value.id, false).then(
+//          (result) => (requestAnswer = result),
+//          (err) => (requestAnswer = err)
+//       );
+//    });
+//    yield checkSuccess(requestAnswer, clearDataSuccess, []);
+// }
 
 export function* deleteComposition(value) {
    yield requestDelete(value.payload[0]).then(
@@ -77,8 +73,8 @@ export function* editComposition(value) {
 
 export function* watchClickSaga() {
    yield takeLatest(readData, read);
-   yield takeLatest(submit, writeNewComposition);
-   yield takeLatest(clearData, clearDataGenerator);
+   yield takeLatest(registration, registrationUser);
+   // yield takeLatest(clearData, clearDataGenerator);
    yield takeLatest(delet, deleteComposition);
    yield takeLatest(edit, editComposition);
    yield takeLatest(fileGif, compressFile);

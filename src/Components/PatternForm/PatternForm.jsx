@@ -22,15 +22,15 @@ import {
 } from "../../utils/redux/selectors";
 
 const PatternForm = ({
-   storage,
-   setStorage,
-   index,
+   // storage,
+   // setStorage,
+   // index,
    setOpen,
    firstName,
    avatar,
    lastName,
    email,
-   registration,
+   submit,
 }) => {
    const slice = useActions(interfaceActionSlice.actions);
    const outputFields = useActions(editFieldsSlice.actions);
@@ -131,7 +131,7 @@ const PatternForm = ({
             <div className={patternForm.btnFooter}>
                {edit === false ? (
                   <input
-                     onClick={registration}
+                     onClick={submit}
                      className={
                         main.btn +
                         " " +
@@ -145,7 +145,7 @@ const PatternForm = ({
                ) : (
                   <>
                      <Link
-                        onClick={registration}
+                        onClick={submit}
                         className={
                            main.btn +
                            " " +
@@ -158,11 +158,11 @@ const PatternForm = ({
                         Изменить
                      </Link>
 
-                     <DeleteItem
+                     {/* <DeleteItem
                         storage={storage}
                         index={index}
                         setStorage={setStorage}
-                     />
+                     /> */}
                   </>
                )}
             </div>

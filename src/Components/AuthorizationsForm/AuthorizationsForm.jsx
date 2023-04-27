@@ -8,20 +8,22 @@ import ValidText from "../Validation/ValidText/ValidText";
 import { useActions } from "../Hooks/useActotion";
 import { interfaceActionSlice } from "../../utils/redux/slices/interfaceActionSlice";
 import { listCompositionSlice } from "../../utils/redux/slices/listComposition";
-import { selectInputFields } from "../../utils/redux/selectors";
 import { loginFieldsSlice } from "../../utils/redux/slices/loginFieldsSlice";
 
 import patternForm from "../PatternForm/patternForm.module.css";
 import indexCss from "../index.module.css";
 import main from "../Main/main.module.css";
-import { selectorInterface } from "../../utils/redux/selectors";
+import {
+   selectLoginFields,
+   selectorInterface,
+} from "../../utils/redux/selectors";
 
 const AuthorizationsForm = ({ setOpen }) => {
    const interfaceActions = useActions(interfaceActionSlice.actions);
    const interfaceSelector = useSelector(selectorInterface);
    const listComposition = useActions(listCompositionSlice.actions);
    const outputLoginField = useActions(loginFieldsSlice.actions);
-   const loginFields = useSelector(selectInputFields);
+   const loginFields = useSelector(selectLoginFields);
    const username = loginFields.username;
    const email = loginFields.email;
    const password = loginFields.password;
@@ -32,7 +34,8 @@ const AuthorizationsForm = ({ setOpen }) => {
       let tmp = {};
       // const cloneStorage = structuredClone(storage);
       //TODO: временный вариант
-      tmp.id = uniqid.time();
+      tmp.id = Math.round(Date.now() / 1000);
+      console.log(tmp.id);
       // tmp.dataRelease = dataRelease;
       // tmp.track = track;
       tmp.username = username;
@@ -53,7 +56,7 @@ const AuthorizationsForm = ({ setOpen }) => {
    const login = () => {
       debugger;
       setOpen(false);
-      listComposition.readData();
+      listComposition.login({ username: username, password: password });
    };
 
    const close = () => {

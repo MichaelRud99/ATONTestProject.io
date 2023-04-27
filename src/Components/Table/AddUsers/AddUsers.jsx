@@ -5,6 +5,10 @@ import indexCss from "../../index.module.css";
 import PatternForm from "../../PatternForm/PatternForm";
 
 const AddUsers = ({ setOpen, open }) => {
+   const add = () => {
+      console.log("Добавили нового пользака");
+   };
+
    return (
       <>
          <input
@@ -17,12 +21,12 @@ const AddUsers = ({ setOpen, open }) => {
          ></input>
          {open === true && (
             <PatternForm
+               setOpen={setOpen}
                firstName={""}
                avatar={""}
                lastName={""}
                email={""}
-               submit={""}
-               setOpen={setOpen}
+               submit={add}
             />
          )}
       </>

@@ -16,14 +16,32 @@ import {
    deleteSuccess,
    fileGif,
    compressionGif,
+   login,
 } from "../slices/listComposition";
-import { successRegistraton } from "../slices/interfaceActionSlice";
+import {
+   successLogin,
+   successRegistraton,
+} from "../slices/interfaceActionSlice";
+import requestLogin from "../../api/requestLogin";
 
 let requestAnswer = 0;
 
-export function* read(number) {
+export function* loginUser(loginData) {
+   debugger;
+   yield requestLogin(loginData.payload, "GET").then(
+      (result) => (requestAnswer = result),
+      (err) => (requestAnswer = err)
+   );
+   yield checkSuccess(requestAnswer, successLogin);
+   if (requestAnswer === 200) {
+      yield read();
+   }
+}
+
+export function* read(number = 1) {
+   debugger;
    const data = yield call(loadDataReguest, number.payload);
-   yield put(writeData(data));
+   yield checkSuccess(requestAnswer, "", data, writeData);
 }
 
 export function* compressFile() {
@@ -34,14 +52,12 @@ export function* compressFile() {
 }
 
 export function* registrationUser(value) {
-   debugger;
-   value = JSON.stringify(value.payload);
-   yield registrationReguest(value, "POST").then(
+   yield registrationReguest(value.payload, "POST").then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
    // console.log(requestAnswer);
-   yield checkSuccess(requestAnswer, successRegistraton, value);
+   yield checkSuccess(requestAnswer, successRegistraton, value.payload);
 }
 
 // export function* clearDataGenerator() {
@@ -72,6 +88,7 @@ export function* editComposition(value) {
 }
 
 export function* watchClickSaga() {
+   yield takeLatest(login, loginUser);
    yield takeLatest(readData, read);
    yield takeLatest(registration, registrationUser);
    // yield takeLatest(clearData, clearDataGenerator);

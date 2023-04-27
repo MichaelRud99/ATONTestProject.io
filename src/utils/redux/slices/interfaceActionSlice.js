@@ -8,6 +8,8 @@ export const interfaceActionSlice = createSlice({
       valid: true,
       openRegistration: false,
       successRegistraton: false,
+      successDelete: false,
+      successLogin: false,
    },
    reducers: {
       editTrue: (state) => {
@@ -36,6 +38,14 @@ export const interfaceActionSlice = createSlice({
       successRegistraton: (state) => {
          state.successRegistraton = !state.successRegistraton;
       },
+
+      successDelete: (state) => {
+         state.successDelete = !state.successDelete;
+      },
+
+      successLogin: (state) => {
+         state.successLogin = !state.successLogin;
+      },
    },
 });
 
@@ -48,6 +58,7 @@ export const {
    validFalse,
    openRegistrations,
    successRegistraton,
+   successLogin,
 } = interfaceActionSlice.actions;
 
 export default interfaceActionSlice.reducer;

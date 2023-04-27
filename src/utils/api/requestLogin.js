@@ -1,4 +1,4 @@
-function registrationReguest(data, method) {
+function requestLogin(data, method) {
    debugger;
    return new Promise((resolve, reject) => {
       const XHR = new XMLHttpRequest();
@@ -11,10 +11,16 @@ function registrationReguest(data, method) {
          }
       };
 
-      XHR.open(method, "https://petstore.swagger.io/v2/user");
+      XHR.open(
+         method,
+         "https://petstore.swagger.io/v2/user/login?username=" +
+            data.username +
+            "&password=" +
+            data.password
+      );
       XHR.setRequestHeader("Content-Type", "application/json");
       XHR.send(data);
    });
 }
 
-export default registrationReguest;
+export default requestLogin;

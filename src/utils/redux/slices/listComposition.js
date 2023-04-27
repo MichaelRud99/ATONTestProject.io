@@ -9,6 +9,8 @@ export const listCompositionSlice = createSlice({
       gifCompress: [],
    },
    reducers: {
+      login: () => {},
+
       writeData: (state, data) => {
          state.data = data.payload;
       },
@@ -53,6 +55,7 @@ export const listCompositionSlice = createSlice({
 });
 
 export const {
+   login,
    writeData,
    readData,
    registration,

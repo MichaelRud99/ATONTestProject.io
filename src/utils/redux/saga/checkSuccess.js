@@ -3,15 +3,18 @@ import { requestFail } from "../slices/listComposition";
 
 export function* checkSuccess(
    requestAnswer,
-   messageSuccess,
-   value,
+   messageSuccess = undefined,
+   value = -1,
    actionSuccess = undefined
 ) {
+   debugger;
    if (requestAnswer <= 400) {
-      if (actionSuccess !== undefined) {
-         yield put(actionSuccess(value.payload));
+      if (value !== -1 && actionSuccess !== undefined) {
+         yield put(actionSuccess(value));
       }
-      yield put(messageSuccess());
+      if (messageSuccess !== "") {
+         yield put(messageSuccess());
+      }
    } else {
       yield put(requestFail());
    }

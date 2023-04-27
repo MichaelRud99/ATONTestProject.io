@@ -11,7 +11,7 @@ const DeleteAll = () => {
    const interfaceAction = useActions(interfaceActionSlice.actions);
    const delet = () => {
       listComposition.clearData();
-      interfaceAction.successDelete();
+      interfaceAction.successDelete(true);
       sessionStorage.clear();
    };
    return (

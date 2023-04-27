@@ -40,16 +40,16 @@ export const interfaceActionSlice = createSlice({
          state.openRegistration = bool.payload;
       },
 
-      successRegistraton: (state) => {
-         state.successRegistraton = !state.successRegistraton;
+      successRegistraton: (state, bool) => {
+         state.successRegistraton = bool.payload;
       },
 
-      successDelete: (state) => {
-         state.successDelete = !state.successDelete;
+      successDelete: (state, bool) => {
+         state.successDelete = bool.payload;
       },
 
-      successLogin: (state) => {
-         state.successLogin = !state.successLogin;
+      successLogin: (state, bool) => {
+         state.successLogin = bool.payload;
       },
    },
 });

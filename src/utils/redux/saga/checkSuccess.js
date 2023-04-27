@@ -13,7 +13,7 @@ export function* checkSuccess(
          yield put(actionSuccess(value));
       }
       if (messageSuccess !== "") {
-         yield put(messageSuccess());
+         yield put(messageSuccess(true));
       }
    } else {
       yield put(requestFail());

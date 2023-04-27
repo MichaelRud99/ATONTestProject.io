@@ -1,10 +1,11 @@
 import { CSSTransition } from "react-transition-group";
 import main from "../Main/main.module.css";
 import index from "../index.module.css";
-const RequestAnswerGood = ({ action, message }) => {
+import patternForm from "../PatternForm/patternForm.module.css";
+const RequestAnswerGood = ({ selector, message, action }) => {
    return (
       <CSSTransition
-         in={action}
+         in={selector}
          timeout={900}
          classNames="network-error"
          mountOnEnter
@@ -13,6 +14,16 @@ const RequestAnswerGood = ({ action, message }) => {
          <div className={main.registrationSuccess + " " + index.flex}>
             <div></div>
             <p>{message}</p>
+            <button
+               onClick={() => action(false)}
+               className={
+                  patternForm.btn +
+                  " " +
+                  patternForm.close +
+                  " " +
+                  index.transitionColor
+               }
+            ></button>
          </div>
       </CSSTransition>
    );

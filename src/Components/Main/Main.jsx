@@ -33,7 +33,7 @@ const Main = () => {
    const [isOpen, setOpen] = useState(false);
    const [storage, setStorage] = useState("");
 
-   const timeNotification = 4000;
+   const timeNotification = 5000;
 
    useEffect(() => {
       if (sessionStorage.getItem("User") !== null) {
@@ -58,7 +58,7 @@ const Main = () => {
    useEffect(() => {
       if (interfaceSelector.successRegistraton === true) {
          setTimeout(() => {
-            interfaceAction.successRegistraton();
+            interfaceAction.successRegistraton(false);
          }, timeNotification);
       }
       if (
@@ -73,7 +73,7 @@ const Main = () => {
             })
          );
          setTimeout(() => {
-            interfaceAction.successLogin();
+            interfaceAction.successLogin(false);
          }, timeNotification);
       }
    }, [interfaceSelector.successRegistraton, interfaceSelector.successLogin]);
@@ -81,7 +81,7 @@ const Main = () => {
    useEffect(() => {
       if (interfaceSelector.successDelete === true) {
          setTimeout(() => {
-            interfaceAction.successDelete();
+            interfaceAction.successDelete(false);
          }, timeNotification);
       }
    }, [interfaceSelector.successDelete]);
@@ -110,8 +110,9 @@ const Main = () => {
                   <Footer />
                </section>
                <RequestAnswerGood
-                  action={interfaceSelector.successRegistraton}
+                  selector={interfaceSelector.successRegistraton}
                   message={"Регистрация прошла успешно"}
+                  action={interfaceAction.successRegistraton}
                />
             </>
          ) : (
@@ -130,13 +131,15 @@ const Main = () => {
          )}
 
          <RequestAnswerGood
-            action={interfaceSelector.successDelete}
+            selector={interfaceSelector.successDelete}
             message={"Данные удалены"}
+            action={interfaceAction.successDelete}
          />
 
          <RequestAnswerGood
-            action={interfaceSelector.successLogin}
+            selector={interfaceSelector.successLogin}
             message={"Вход выполнен"}
+            action={interfaceAction.successLogin}
          />
 
          <CSSTransition

@@ -6,6 +6,7 @@ export const interfaceActionSlice = createSlice({
       edit: false,
       open: true,
       valid: true,
+      load: false,
       openRegistration: false,
       successRegistraton: false,
       successDelete: false,
@@ -29,6 +30,10 @@ export const interfaceActionSlice = createSlice({
       },
       validFalse: (state) => {
          state.valid = false;
+      },
+
+      load: (state, bool) => {
+         state.load = bool.payload;
       },
 
       openRegistrations: (state, bool) => {
@@ -56,6 +61,7 @@ export const {
    openFalse,
    validTrue,
    validFalse,
+   load,
    openRegistrations,
    successRegistraton,
    successLogin,

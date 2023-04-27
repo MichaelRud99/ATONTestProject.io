@@ -12,6 +12,7 @@ const DeleteAll = () => {
    const delet = () => {
       listComposition.clearData();
       interfaceAction.successDelete();
+      sessionStorage.clear();
    };
    return (
       <input

@@ -19,6 +19,7 @@ import RequestAnswerGood from "../RequestAnswers/RequestAnswerGood";
 
 import "../transitionComponents.css";
 import main from "./main.module.css";
+import Loader from "../Loader/Loader";
 
 const Main = () => {
    const compositions = useSelector(selectorListComposition);
@@ -43,6 +44,7 @@ const Main = () => {
 
    useEffect(() => {
       setStorage(compositions.data);
+      interfaceAction.load(false);
    }, [compositions.data.length, compositions.data.page]);
 
    useEffect(() => {
@@ -89,12 +91,22 @@ const Main = () => {
          {storage.length === 0 ? (
             <>
                <section className={main.flex}>
-                  <h1 className={main.title}>Авторизуйтесь в системе</h1>
-                  <BtnCreate
-                     storage={storage}
-                     setOpen={setOpen}
-                     open={isOpen}
-                  />
+                  {sessionStorage.getItem("User") === null &&
+                  interfaceSelector.load === false ? (
+                     <>
+                        <h1 className={main.title}>Авторизуйтесь в системе</h1>
+                        <BtnCreate
+                           storage={storage}
+                           setOpen={setOpen}
+                           open={isOpen}
+                        />
+                     </>
+                  ) : (
+                     <>
+                        <Loader />
+                        <p className={main.subtitle}>Загрузка данных</p>
+                     </>
+                  )}
                   <Footer />
                </section>
                <RequestAnswerGood

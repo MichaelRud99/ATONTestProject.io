@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import uniqid from "uniqid";
 
 import validationText from "../../utils/validation/validationText/validationText";
 import ValidText from "../Validation/ValidText/ValidText";
@@ -19,7 +18,7 @@ import {
 } from "../../utils/redux/selectors";
 
 const AuthorizationsForm = ({ setOpen }) => {
-   const interfaceActions = useActions(interfaceActionSlice.actions);
+   const interfaceAction = useActions(interfaceActionSlice.actions);
    const interfaceSelector = useSelector(selectorInterface);
    const listComposition = useActions(listCompositionSlice.actions);
    const outputLoginField = useActions(loginFieldsSlice.actions);
@@ -44,8 +43,8 @@ const AuthorizationsForm = ({ setOpen }) => {
       // cloneStorage[cloneStorage.length] = tmp;
 
       listComposition.registration(tmp);
-      interfaceActions.validTrue();
-      interfaceActions.openRegistrations(false);
+      interfaceAction.validTrue();
+      interfaceAction.openRegistrations(false);
       setOpen(false);
       // } else {
       //    slice[2].validFalse();
@@ -57,12 +56,13 @@ const AuthorizationsForm = ({ setOpen }) => {
       debugger;
       setOpen(false);
       listComposition.login({ username: username, password: password });
+      interfaceAction.load(true);
    };
 
    const close = () => {
       setOpen(false);
-      interfaceActions.validTrue();
-      interfaceActions.openRegistrations(false);
+      interfaceAction.validTrue();
+      interfaceAction.openRegistrations(false);
    };
 
    return (
@@ -146,7 +146,7 @@ const AuthorizationsForm = ({ setOpen }) => {
                   ></input>
 
                   <input
-                     onClick={() => interfaceActions.openRegistrations(true)}
+                     onClick={() => interfaceAction.openRegistrations(true)}
                      className={
                         main.btn +
                         " " +

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/MichaelRud99/ATONTestProject.io/static/css/main.09253a7b.css",
+    "main.js": "/MichaelRud99/ATONTestProject.io/static/js/main.9ef6a47c.js",
+    "static/media/backgroundImg.jpg": "/MichaelRud99/ATONTestProject.io/static/media/backgroundImg.e6110091f79d4c0010ea.jpg",
+    "static/media/pngwing.com.png": "/MichaelRud99/ATONTestProject.io/static/media/pngwing.com.1948eeec304f324a8cf5.png",
+    "static/media/camera-computer-icons-photography-clip-art-camera-vector-5ad18a93b30fa5.svg": "/MichaelRud99/ATONTestProject.io/static/media/camera-computer-icons-photography-clip-art-camera-vector-5ad18a93b30fa5.d6b9eb970e2669d58a18.svg",
+    "index.html": "/MichaelRud99/ATONTestProject.io/index.html",
+    "main.09253a7b.css.map": "/MichaelRud99/ATONTestProject.io/static/css/main.09253a7b.css.map",
+    "main.9ef6a47c.js.map": "/MichaelRud99/ATONTestProject.io/static/js/main.9ef6a47c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.09253a7b.css",
+    "static/js/main.9ef6a47c.js"
+  ]
+}

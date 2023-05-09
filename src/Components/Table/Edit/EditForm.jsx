@@ -4,54 +4,37 @@ import editValidation from "../../../utils/validation/editValidation";
 import validation from "../../../utils/validation/validation";
 import { editFieldsSlice } from "../../../utils/redux/slices/editFieldsSlice";
 import { useActions } from "../../Hooks/useActotion";
-import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { interfaceActionSlice } from "../../../utils/redux/slices/interfaceActionSlice";
-import { selectInputFields } from "../../../utils/redux/selectors";
+import { selectLoginFields } from "../../../utils/redux/selectors";
 
-const EditForm = ({
-   storage,
-   setStorage,
-   firstName,
-   avatar,
-   lastName,
-   email,
-   index,
-   setOpen,
-}) => {
+const EditForm = ({ storage, firstName, lastName, email, index, setOpen }) => {
    const slice = useActions([
       editFieldsSlice.actions,
-      listCompositionSlice.actions,
+      listDataSlice.actions,
       interfaceActionSlice.actions,
    ]);
 
-   const inputFields = useSelector(selectInputFields);
-   let editAlbum = inputFields.email;
-   let editAuthor = inputFields.firstName;
-   let editDataRelease = inputFields.avatar;
-   let editTrack = inputFields.lastName;
+   const loginFieldsSelector = useSelector(selectLoginFields);
+   let editFirstName = loginFieldsSelector.username;
+   let editLastName = loginFieldsSelector.password;
+   let editEmail = loginFieldsSelector.email;
    const cloneStorage = structuredClone(storage);
 
    const submit = (event) => {
-      editAuthor = editValidation(editAuthor, firstName);
-      editTrack = editValidation(editTrack, lastName);
-      editAlbum = editValidation(editAlbum, email);
-      editDataRelease = editValidation(editDataRelease, avatar);
+      editFirstName = editValidation(editFirstName, firstName);
+      editLastName = editValidation(editLastName, lastName);
+      editEmail = editValidation(editEmail, email);
+      cloneStorage[index] = firstName;
+      cloneStorage[index] = lastName;
+      cloneStorage[index] = email;
 
-      if (
-         validation(editAuthor, editTrack, editAlbum, editDataRelease) === true
-      ) {
-         cloneStorage[index].firstName = editValidation(editAuthor, firstName);
-         cloneStorage[index].lastName = editValidation(editTrack, lastName);
-         cloneStorage[index].email = editValidation(editAlbum, email);
-         cloneStorage[index].avatar = editValidation(editDataRelease, avatar);
-
-         setStorage(cloneStorage);
-         slice[0].enterClear();
+      if (validation(editFirstName, editLastName, editEmail)) {
          slice[1].edit([cloneStorage[index], index]);
-         slice[2].openTrue();
-         slice[2].editFalse();
+         slice[2].open(true);
+         slice[2].edit(false);
       } else {
-         slice[2].validFalse();
+         slice[2].valid(false);
          event.preventDefault();
       }
    };
@@ -59,14 +42,11 @@ const EditForm = ({
    return (
       <>
          <PatternForm
-            storage={storage}
             firstName={firstName}
-            avatar={avatar}
             lastName={lastName}
             email={email}
             submit={submit}
             index={index}
-            setStorage={setStorage}
             setOpen={setOpen}
          />
       </>

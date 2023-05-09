@@ -3,24 +3,22 @@ import deleteAll from "./deleteAll.module.css";
 import main from "../../Main/main.module.css";
 import indexCss from "../../index.module.css";
 import { useActions } from "../../Hooks/useActotion";
-import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { interfaceActionSlice } from "../../../utils/redux/slices/interfaceActionSlice";
 
 const DeleteAll = () => {
-   const listComposition = useActions(listCompositionSlice.actions);
+   const listComposition = useActions(listDataSlice.actions);
    const interfaceAction = useActions(interfaceActionSlice.actions);
    const delet = () => {
       listComposition.clearData();
-      interfaceAction.successDelete(true);
+      interfaceAction.successDeleteAll(true);
       sessionStorage.clear();
    };
    return (
       <input
          onClick={delet}
          type="button"
-         className={
-            main.btn + " " + deleteAll.delete + " " + indexCss.transitionBtn
-         }
+         className={main.btn + " " + deleteAll.delete + " " + indexCss.transitionBtn}
          defaultValue="удалить всё"
       ></input>
    );

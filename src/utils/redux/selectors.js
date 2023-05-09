@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
-export const selectorListComposition = (state) => state.listComposition;
-export const selectorListCompositionData = (state) =>
-   state.listComposition.data;
+export const selectorListData = (state) => state.listData;
+export const selectorListDataData = (state) => state.listData.data;
 export const selectorInterfaceOpen = (state) => state.interfaceActions.open;
 export const selectorInterfaceEdit = (state) => state.interfaceActions.edit;
 export const selectorInterfaceValid = (state) => state.interfaceActions.valid;

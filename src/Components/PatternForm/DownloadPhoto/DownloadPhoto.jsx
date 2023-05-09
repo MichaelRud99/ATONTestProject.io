@@ -3,30 +3,30 @@ import React, { useRef, useState } from "react";
 import patternForm from "../patternForm.module.css";
 import { useActions } from "../../Hooks/useActotion";
 import { editFieldsSlice } from "../../../utils/redux/slices/editFieldsSlice";
-import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { useSelector } from "react-redux";
-import { selectorListComposition } from "../../../utils/redux/selectors";
+import { selectorListData } from "../../../utils/redux/selectors";
 import { useEffect } from "react";
 
 const DownloadPhoto = () => {
    const inputFields = useActions(editFieldsSlice.actions);
-   const compositions = useSelector(selectorListComposition);
-   const compositionsAction = useActions(listCompositionSlice.actions);
+   const listData = useSelector(selectorListData);
+   const listDataAction = useActions(listDataSlice.actions);
    const inputImg = useRef(null);
-   const slice = useActions(listCompositionSlice.actions);
+   const slice = useActions(listDataSlice.actions);
    const [namePhote, setNamePhoto] = useState("добавить обложку");
 
    useEffect(() => {
-      if (compositions.gifCompress.length !== 0) {
+      if (listData.gifCompress.length !== 0) {
          const reader = new FileReader();
-         reader.readAsDataURL(compositions.gifCompress);
+         reader.readAsDataURL(listData.gifCompress);
          reader.onloadend = function () {
             const base64 = reader.result;
             inputFields.enterAlbumPhoto(base64);
-            compositionsAction.compressionGif("");
+            listDataAction.compressionGif("");
          };
       }
-   }, [compositions.gifCompress]);
+   }, [listData.gifCompress]);
 
    const download = () => {
       inputImg.current.onchange = () => {

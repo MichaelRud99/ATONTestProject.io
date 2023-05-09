@@ -1,24 +1,24 @@
-import { put, call, takeLatest, select } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import checkSuccess from "./checkSuccess";
-import requests from "../../api/requests";
 import loadDataReguest from "../../api/loadDataReguest";
-import requestImgCompression from "../../api/requestImgCompression";
-import registrationReguest from "../../api/registrationReguest";
-import requestDelete from "../../api/requestDelete.js";
+import requests from "../../api/requests";
+import requestImgCompresson from "../../api/requestImgCompression";
 
 import {
    writeData,
    readData,
    registration,
    edit,
-   editSuccess,
    delet,
-   deleteSuccess,
+   login,
+   addUser,
    fileGif,
    compressionGif,
-   login,
-} from "../slices/listComposition";
+} from "../slices/listData";
 import {
+   successAddUser,
+   successDelete,
+   successEdit,
    successLogin,
    successRegistraton,
 } from "../slices/interfaceActionSlice";
@@ -26,75 +26,71 @@ import requestLogin from "../../api/requestLogin";
 
 let requestAnswer = 0;
 
-export function* loginUser(loginData) {
-   debugger;
+export function* loginGenerator(loginData) {
    yield requestLogin(loginData.payload, "GET").then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
    yield checkSuccess(requestAnswer, successLogin);
    if (requestAnswer === 200) {
-      yield read();
+      yield readGenerator();
    }
 }
 
-export function* read(number = 1) {
-   debugger;
+export function* readGenerator(number = 1) {
    const data = yield call(loadDataReguest, number.payload);
    yield checkSuccess(requestAnswer, "", data, writeData);
 }
 
-export function* compressFile() {
-   let gif = yield select();
-   gif = gif.listComposition.gif;
-   const compressedFile = yield call(requestImgCompression, gif);
-   yield put(compressionGif(compressedFile));
-}
-
-export function* registrationUser(value) {
-   yield registrationReguest(value.payload, "POST").then(
+export function* registrationGenerator(value) {
+   yield requests(value.payload, "POST").then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
-   // console.log(requestAnswer);
    yield checkSuccess(requestAnswer, successRegistraton, value.payload);
 }
 
-// export function* clearDataGenerator() {
-//    const data = yield call(loadDataReguest);
-//    yield data.forEach((value) => {
-//       requestDelete(value.id, false).then(
-//          (result) => (requestAnswer = result),
-//          (err) => (requestAnswer = err)
-//       );
-//    });
-//    yield checkSuccess(requestAnswer, clearDataSuccess, []);
-// }
-
-export function* deleteComposition(value) {
-   yield requestDelete(value.payload[0]).then(
+export function* addUserGenerator(value) {
+   const userData = value.payload;
+   yield requests(userData, "POST").then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
-   yield checkSuccess(requestAnswer, deleteSuccess, value);
+   yield checkSuccess(requestAnswer, successAddUser, value.payload);
 }
 
-export function* editComposition(value) {
-   yield requests(value.payload[0], "PUT", value.payload[0].id).then(
+export function* deleteComposition(value) {
+   debugger;
+   yield requests("", "DELETE", value.payload[0]).then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)
    );
-   yield checkSuccess(requestAnswer, editSuccess, value);
+   yield checkSuccess(requestAnswer, successDelete, value);
+}
+
+export function* editGenerator(value) {
+   yield requests(value.payload[0], "PUT", value.payload[1]).then(
+      (result) => (requestAnswer = result),
+      (err) => (requestAnswer = err)
+   );
+   yield checkSuccess(requestAnswer, successEdit, value.payload);
+}
+
+export function* fileGifGenerator() {
+   let gif = yield select();
+   gif = gif.listData.gif;
+   const compressedFile = yield call(requestImgCompresson, gif);
+   yield put(compressionGif(compressedFile));
 }
 
 export function* watchClickSaga() {
-   yield takeLatest(login, loginUser);
-   yield takeLatest(readData, read);
-   yield takeLatest(registration, registrationUser);
-   // yield takeLatest(clearData, clearDataGenerator);
+   yield takeLatest(login, loginGenerator);
+   yield takeLatest(readData, readGenerator);
+   yield takeLatest(registration, registrationGenerator);
+   yield takeLatest(addUser, addUserGenerator);
    yield takeLatest(delet, deleteComposition);
-   yield takeLatest(edit, editComposition);
-   yield takeLatest(fileGif, compressFile);
+   yield takeLatest(edit, editGenerator);
+   yield takeLatest(fileGif, fileGifGenerator);
 }
 
 export default function* rootSaga() {

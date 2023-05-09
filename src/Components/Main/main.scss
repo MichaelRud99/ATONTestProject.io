@@ -12,6 +12,32 @@
    text-align: center;
 }
 
+@mixin icon($width, $height, $url) {
+   width: $width;
+   height: $height;
+   background-image: url($url);
+   background-size: cover;
+}
+
+@mixin requestAnswer($color) {
+   position: fixed;
+   color: white;
+   bottom: 5%;
+   right: 2%;
+   text-align: center;
+   background-color: var($color);
+   border-radius: 10px;
+   justify-content: space-between;
+   @include size(300px, auto);
+   @include border(10px, transparent);
+
+   @media (max-width: 1800px) {
+      padding: 5px 0px;
+      @include fontSizeWeight(14px, 400);
+      @include size(250px, 20px);
+   }
+}
+
 .flex {
    display: flex;
    margin: 150px auto 0% auto;
@@ -84,45 +110,25 @@
 }
 
 .networkError {
-   position: fixed;
-   color: white;
-   bottom: 5%;
-   right: 2%;
-   text-align: center;
-   padding: 20px 0px;
-   background-color: var(--network-error);
-   border-radius: 10px;
-
-   @include size(300px, 20px);
-   @include border(10px, transparent);
-
-   @media (max-width: 1800px) {
-      padding: 5px 0px;
-      @include fontSizeWeight(14px, 400);
-      @include size(250px, 20px);
-   }
+   @include requestAnswer(var(--network-error));
 }
 
 .registrationSuccess {
-   position: fixed;
-   color: white;
-   bottom: 5%;
-   right: 2%;
-   text-align: center;
-   background-color: var(--form-background);
-   border-radius: 10px;
-   justify-content: space-between;
-   @include size(300px, auto);
-   @include border(10px, transparent);
+   @include requestAnswer(var(--form-background));
 }
 
 .registrationSuccess div {
-   width: 50px;
-   height: 50px;
-   background-image: url(../../../public/img/pngwing.com.png);
-   background-size: cover;
+   @include icon(50px, 50px, "../../../public/img/pngwing.com.png");
 }
 
 .registrationSuccess p {
+   margin: auto;
+}
+
+.networkError div {
+   @include icon(50px, 50px, "../../../public/img/icons8-отмена-48.png");
+}
+
+.networkError p {
    margin: auto;
 }

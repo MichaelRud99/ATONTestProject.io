@@ -14,13 +14,14 @@
 
 .body {
    position: fixed;
-   top: 30vh;
-   left: 70vh;
+   top: -25%;
+   left: 25%;
    right: 0px;
    bottom: 0px;
-   background-color: var(--form-background);
+   margin: auto;
    padding: 10px;
-   @include size(700px, 420px);
+   background-color: var(--form-background);
+   @include size(700px, 330px);
    @include border(transparent);
 
    @media (max-width: 1800px) {
@@ -95,14 +96,14 @@
 }
 
 .move {
-   width: 50px;
    margin-left: auto;
+   @include size(50px, 30px);
 }
 
 .btnFooter {
    display: flex;
    margin: auto;
-   margin-top: 50px;
+   margin-top: 30px;
    gap: 70px;
    grid-column: span 2;
    justify-content: center;
@@ -115,11 +116,9 @@
 }
 
 .flex {
-   display: grid;
-   grid-column: span 2;
-   gap: 10px;
    cursor: pointer;
-   margin-left: 20px;
+   margin-left: 35px;
+   margin-top: 15px;
 }
 
 .addPhoto {
@@ -150,6 +149,7 @@ p {
    height: 30px;
    opacity: 0;
    position: absolute;
+   top: 170px;
    cursor: pointer;
 }
 

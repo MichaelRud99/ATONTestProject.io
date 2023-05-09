@@ -4,32 +4,23 @@ import main from "../../Main/main.module.css";
 import deleteItem from "./deleteItem.module.css";
 import indexCss from "../../index.module.css";
 import { useActions } from "../../Hooks/useActotion";
-import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { interfaceActionSlice } from "../../../utils/redux/slices/interfaceActionSlice";
 
-const DeleteItem = ({ storage, setStorage, index }) => {
-   const slice = useActions([
-      listCompositionSlice.actions,
-      interfaceActionSlice.actions,
-   ]);
+const DeleteItem = ({ index }) => {
+   const slice = useActions([listDataSlice.actions, interfaceActionSlice.actions]);
 
    const delet = () => {
-      const cloneStorage = structuredClone(storage);
-      slice[0].delet([cloneStorage[index].id, index]);
-      slice[0].readData();
-      cloneStorage.splice(index, 1);
-      setStorage(cloneStorage);
-      slice[1].editFalse();
-      slice[1].openTrue();
+      slice[0].delet(index);
+      slice[1].edit(false);
+      slice[1].open(true);
    };
 
    return (
       <Link
          onClick={delet}
-         className={
-            main.btn + " " + deleteItem.delete + " " + indexCss.transitionBtn
-         }
-         to="/MichaelRud99/CreateSampleMusicReact.github.io/"
+         className={main.btn + " " + deleteItem.delete + " " + indexCss.transitionBtn}
+         to="/MichaelRud99/ATONTestProject.io"
       >
          Удалить
       </Link>

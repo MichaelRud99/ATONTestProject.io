@@ -9,7 +9,7 @@ export const loginFieldsSlice = createSlice({
    },
 
    reducers: {
-      enterLogin: (state, username) => {
+      enterUsername: (state, username) => {
          state.username = username.payload;
       },
 
@@ -23,6 +23,6 @@ export const loginFieldsSlice = createSlice({
    },
 });
 
-export const { enterLogin,enterEmail, enterPassword } = loginFieldsSlice.actions;
+export const { enterUsername,enterEmail, enterPassword } = loginFieldsSlice.actions;
 
 export default loginFieldsSlice.reducer;

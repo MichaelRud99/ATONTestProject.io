@@ -3,17 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 export const editFieldsSlice = createSlice({
    name: "inputFields",
    initialState: {
-      albumPhoto: "default",
       email: "",
       firstName: "",
-      avatar: "",
       lastName: "",
    },
 
    reducers: {
-      enterAlbumPhoto: (state, albumPhoto) => {
-         state.albumPhoto = albumPhoto.payload;
-      },
       enterAlbum: (state, email) => {
          state.email = email.payload;
       },
@@ -28,10 +23,8 @@ export const editFieldsSlice = createSlice({
       },
 
       enterClear: (state) => {
-         state.albumPhoto = "default";
          state.email = "";
          state.firstName = "";
-         state.avatar = "";
          state.lastName = "";
       },
    },

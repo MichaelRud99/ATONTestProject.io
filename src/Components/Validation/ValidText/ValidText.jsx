@@ -7,8 +7,7 @@ import {
    selectorInterfaceValid,
 } from "../../../utils/redux/selectors";
 
-const ValidText = ({ validationText, initialValue, outputValue, setValue }) => {
-   // console.log(setValue);
+const  ValidText = ({ validationText, initialValue, outputValue, setValue }) => {
    const edit = useSelector(selectorInterfaceEdit);
    const validFail = useSelector(selectorInterfaceValid);
 

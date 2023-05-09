@@ -1,12 +1,12 @@
 import { useActions } from "../../Hooks/useActotion";
-import { listCompositionSlice } from "../../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { useDispatch } from "react-redux";
 
 import index from "../../index.module.css";
 import { interfaceActionSlice } from "../../../utils/redux/slices/interfaceActionSlice";
 
 const NumberPages = ({ number }) => {
-   const listComposition = useActions(listCompositionSlice.actions);
+   const listComposition = useActions(listDataSlice.actions);
    const interfaceAction = useActions(interfaceActionSlice.actions);
    const dispatch = useDispatch();
 

@@ -1,5 +1,4 @@
 function requestLogin(data, method) {
-   debugger;
    return new Promise((resolve, reject) => {
       const XHR = new XMLHttpRequest();
 

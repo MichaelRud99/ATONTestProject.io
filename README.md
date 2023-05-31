@@ -1,4 +1,4 @@
-<h1 align="center">Frontend ATON test project</h1>
+<h1 align="center">Create sample music</h1>
 
 ## Table of Contents
 
@@ -11,9 +11,9 @@
 
 ## Overview
 
-<h4 align="center">starting page</h4>
+<h4 align="center">starging page</h4>
 
-![screenshot](./public/imgREADME/startingWindow.PNG)
+![screenshot](./public/img/imgREADME/startingWindow.PNG)
 
 <h4 align="center">authorization page</h4>
 

@@ -2,25 +2,25 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import validationText from "../../utils/validation/validationText/validationText";
+import validationEmail from "../../utils/validation/validationEmail/validationEmail";
 import ValidText from "../Validation/ValidText/ValidText";
+import ValidEmail from "../Validation/ValidEmail/ValidEmail";
+import validation from "../../utils/validation/validation";
 
 import { useActions } from "../Hooks/useActotion";
 import { interfaceActionSlice } from "../../utils/redux/slices/interfaceActionSlice";
-import { listCompositionSlice } from "../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../utils/redux/slices/listData";
 import { loginFieldsSlice } from "../../utils/redux/slices/loginFieldsSlice";
 
 import patternForm from "../PatternForm/patternForm.module.css";
 import indexCss from "../index.module.css";
 import main from "../Main/main.module.css";
-import {
-   selectLoginFields,
-   selectorInterface,
-} from "../../utils/redux/selectors";
+import { selectLoginFields, selectorInterface } from "../../utils/redux/selectors";
 
 const AuthorizationsForm = ({ setOpen }) => {
    const interfaceAction = useActions(interfaceActionSlice.actions);
    const interfaceSelector = useSelector(selectorInterface);
-   const listComposition = useActions(listCompositionSlice.actions);
+   const listComposition = useActions(listDataSlice.actions);
    const outputLoginField = useActions(loginFieldsSlice.actions);
    const loginFields = useSelector(selectLoginFields);
    const username = loginFields.username;
@@ -29,39 +29,41 @@ const AuthorizationsForm = ({ setOpen }) => {
 
    const registration = (event) => {
       debugger;
-      // if (validation(author, track, album, dataRelease) === true) {
-      let tmp = {};
-      // const cloneStorage = structuredClone(storage);
-      //TODO: временный вариант
-      tmp.id = Math.round(Date.now() / 1000);
-      console.log(tmp.id);
-      // tmp.dataRelease = dataRelease;
-      // tmp.track = track;
-      tmp.username = username;
-      tmp.email = email;
-      tmp.password = password;
-      // cloneStorage[cloneStorage.length] = tmp;
+      console.log("username", username, password, email);
+      if (validation(username, password, email) === true) {
+         let tmp = {};
+         tmp.id = Math.round(Date.now() / 1000);
+         console.log(tmp.id);
+         tmp.username = username;
+         tmp.email = email;
+         tmp.password = password;
 
-      listComposition.registration(tmp);
-      interfaceAction.validTrue();
-      interfaceAction.openRegistrations(false);
-      setOpen(false);
-      // } else {
-      //    slice[2].validFalse();
-      //    event.preventDefault();
-      // }
+         listComposition.registration(tmp);
+         interfaceAction.valid(true);
+         interfaceAction.openRegistrations(false);
+         setOpen(false);
+      } else {
+         interfaceAction.valid(false);
+         event.preventDefault();
+      }
    };
 
-   const login = () => {
+   const login = (event) => {
       debugger;
-      setOpen(false);
-      listComposition.login({ username: username, password: password });
-      interfaceAction.load(true);
+      if (validation(username, password) === true) {
+         interfaceAction.valid(true);
+         setOpen(false);
+         listComposition.login({ username: username, password: password });
+         interfaceAction.load(true);
+      } else {
+         interfaceAction.valid(false);
+         event.preventDefault();
+      }
    };
 
    const close = () => {
       setOpen(false);
-      interfaceAction.validTrue();
+      interfaceAction.valid(true);
       interfaceAction.openRegistrations(false);
    };
 
@@ -71,11 +73,7 @@ const AuthorizationsForm = ({ setOpen }) => {
             <button
                onClick={close}
                className={
-                  patternForm.btn +
-                  " " +
-                  patternForm.close +
-                  " " +
-                  indexCss.transitionColor
+                  patternForm.btn + " " + patternForm.close + " " + indexCss.transitionColor
                }
             ></button>
          </div>
@@ -88,7 +86,7 @@ const AuthorizationsForm = ({ setOpen }) => {
                   validationText={validationText}
                   initialValue={""}
                   outputValue={username}
-                  setValue={outputLoginField.enterLogin}
+                  setValue={outputLoginField.enterUsername}
                />
             </div>
             {interfaceSelector.openRegistration && (
@@ -96,8 +94,8 @@ const AuthorizationsForm = ({ setOpen }) => {
                   <div className={patternForm.distance}>
                      <label>Email</label>
                   </div>
-                  <ValidText
-                     validationText={validationText}
+                  <ValidEmail
+                     validationEmail={validationEmail}
                      initialValue={""}
                      outputValue={email}
                      setValue={outputLoginField.enterEmail}
@@ -120,13 +118,7 @@ const AuthorizationsForm = ({ setOpen }) => {
             {interfaceSelector.openRegistration ? (
                <input
                   onClick={registration}
-                  className={
-                     main.btn +
-                     " " +
-                     patternForm.add +
-                     " " +
-                     indexCss.transitionBtn
-                  }
+                  className={main.btn + " " + patternForm.add + " " + indexCss.transitionBtn}
                   defaultValue="Регистрация"
                   type="button"
                ></input>
@@ -134,26 +126,14 @@ const AuthorizationsForm = ({ setOpen }) => {
                <>
                   <input
                      onClick={login}
-                     className={
-                        main.btn +
-                        " " +
-                        patternForm.add +
-                        " " +
-                        indexCss.transitionBtn
-                     }
+                     className={main.btn + " " + patternForm.add + " " + indexCss.transitionBtn}
                      defaultValue="Войти"
                      type="button"
                   ></input>
 
                   <input
                      onClick={() => interfaceAction.openRegistrations(true)}
-                     className={
-                        main.btn +
-                        " " +
-                        patternForm.add +
-                        " " +
-                        indexCss.transitionBtn
-                     }
+                     className={main.btn + " " + patternForm.add + " " + indexCss.transitionBtn}
                      defaultValue="Регистрация"
                      type="button"
                   />

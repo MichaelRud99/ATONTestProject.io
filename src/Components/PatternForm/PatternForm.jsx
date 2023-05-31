@@ -7,49 +7,35 @@ import main from "../Main/main.module.css";
 import indexCss from "../index.module.css";
 
 import validationText from "../../utils/validation/validationText/validationText";
-import validationDate from "../../utils/validation/validationDate/validationDate";
 import ValidText from "../Validation/ValidText/ValidText";
-import ValidDate from "../Validation/ValidDate/ValidDate";
-import DeleteItem from "./DeleteItem/DeleteItem";
 import DownloadPhoto from "./DownloadPhoto/DownloadPhoto";
+import DeleteItem from "./DeleteItem/DeleteItem";
 
 import { useActions } from "../Hooks/useActotion";
-import { editFieldsSlice } from "../../utils/redux/slices/editFieldsSlice";
+import { loginFieldsSlice } from "../../utils/redux/slices/loginFieldsSlice";
 import { interfaceActionSlice } from "../../utils/redux/slices/interfaceActionSlice";
-import {
-   selectInputFields,
-   selectorInterfaceEdit,
-} from "../../utils/redux/selectors";
+import { selectLoginFields, selectorInterfaceEdit } from "../../utils/redux/selectors";
+import ValidEmail from "../Validation/ValidEmail/ValidEmail";
+import validationEmail from "../../utils/validation/validationEmail/validationEmail";
 
-const PatternForm = ({
-   // storage,
-   // setStorage,
-   // index,
-   setOpen,
-   firstName,
-   avatar,
-   lastName,
-   email,
-   submit,
-}) => {
+const PatternForm = ({ firstName, lastName, email, submit, index, setOpen }) => {
    const slice = useActions(interfaceActionSlice.actions);
-   const outputFields = useActions(editFieldsSlice.actions);
-   const inputFields = useSelector(selectInputFields);
-   const outputAlbum = inputFields.email;
-   const outputAuthor = inputFields.firstName;
-   const outputDataRelease = inputFields.avatar;
-   const outputTrack = inputFields.lastName;
+   const outputFields = useActions(loginFieldsSlice.actions);
+   const inputFields = useSelector(selectLoginFields);
+   const outputFirstName = inputFields.firstName;
+   const outputLastName = inputFields.lastName;
+   const outputEmail = inputFields.email;
    const edit = useSelector(selectorInterfaceEdit);
 
    const close = () => {
       setOpen(false);
-      slice.validTrue();
+      slice.valid(true);
    };
 
    const editClose = () => {
-      slice.editFalse();
-      slice.validTrue();
-      slice.openTrue();
+      slice.edit(false);
+      slice.valid(true);
+      slice.open(true);
    };
 
    return (
@@ -59,72 +45,53 @@ const PatternForm = ({
                <button
                   onClick={close}
                   className={
-                     patternForm.btn +
-                     " " +
-                     patternForm.close +
-                     " " +
-                     indexCss.transitionColor
+                     patternForm.btn + " " + patternForm.close + " " + indexCss.transitionColor
                   }
                ></button>
             ) : (
                <Link
                   onClick={editClose}
                   className={
-                     patternForm.btn +
-                     " " +
-                     patternForm.close +
-                     " " +
-                     indexCss.transitionColor
+                     patternForm.btn + " " + patternForm.close + " " + indexCss.transitionColor
                   }
-                  to="/MichaelRud99/CreateSampleMusicReact.github.io/"
+                  to="/MichaelRud99/ATONTestProject.io"
                ></Link>
             )}
          </div>
          <form className={patternForm.form}>
             <div>
                <div className={patternForm.distance}>
-                  <label>Исполнитель</label>
+                  <label>Имя</label>
                </div>
                <ValidText
                   validationText={validationText}
                   initialValue={firstName}
-                  outputValue={outputAuthor}
-                  setValue={outputFields.enterAuthor}
+                  outputValue={outputFirstName}
+                  setValue={outputFields.enterUsername}
                />
             </div>
 
             <div>
                <div className={patternForm.distance}>
-                  <label>Дата выпуска</label>
-               </div>
-               <ValidDate
-                  validationDate={validationDate}
-                  initialValue={avatar}
-                  outputValue={outputDataRelease}
-                  setValue={outputFields.enterDataRelease}
-               />
-            </div>
-            <div>
-               <div className={patternForm.distance}>
-                  <label>название композиции</label>
+                  <label>Фамилия</label>
                </div>
                <ValidText
                   validationText={validationText}
                   initialValue={lastName}
-                  outputValue={outputTrack}
-                  setValue={outputFields.enterTrack}
+                  outputValue={outputLastName}
+                  setValue={outputFields.enterPassword}
                />
             </div>
 
             <div>
                <div className={patternForm.distance}>
-                  <label>Альбом</label>
+                  <label>email</label>
                </div>
-               <ValidText
-                  validationText={validationText}
+               <ValidEmail
+                  validationEmail={validationEmail}
                   initialValue={email}
-                  outputValue={outputAlbum}
-                  setValue={outputFields.enterAlbum}
+                  outputValue={outputEmail}
+                  setValue={outputFields.enterEmail}
                />
             </div>
             {edit === false && <DownloadPhoto />}
@@ -132,13 +99,7 @@ const PatternForm = ({
                {edit === false ? (
                   <input
                      onClick={submit}
-                     className={
-                        main.btn +
-                        " " +
-                        patternForm.add +
-                        " " +
-                        indexCss.transitionBtn
-                     }
+                     className={main.btn + " " + patternForm.add + " " + indexCss.transitionBtn}
                      defaultValue="добавить"
                      type="button"
                   ></input>
@@ -147,22 +108,14 @@ const PatternForm = ({
                      <Link
                         onClick={submit}
                         className={
-                           main.btn +
-                           " " +
-                           patternForm.change +
-                           " " +
-                           indexCss.transitionBtn
+                           main.btn + " " + patternForm.change + " " + indexCss.transitionBtn
                         }
-                        to="/MichaelRud99/CreateSampleMusicReact.github.io/"
+                        to="/MichaelRud99/ATONTestProject.io"
                      >
                         Изменить
                      </Link>
 
-                     {/* <DeleteItem
-                        storage={storage}
-                        index={index}
-                        setStorage={setStorage}
-                     /> */}
+                     <DeleteItem index={index} />
                   </>
                )}
             </div>

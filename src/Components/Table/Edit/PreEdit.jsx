@@ -13,8 +13,8 @@ const PreEdit = ({ id }) => {
    const open = useSelector(selectorInterfaceOpen);
 
    const tmp = () => {
-      slice.editTrue();
-      slice.openFalse();
+      slice.edit(true);
+      slice.open(false);
    };
 
    return (
@@ -24,7 +24,7 @@ const PreEdit = ({ id }) => {
                <Link
                   onClick={tmp}
                   className={patternForm.btn + " " + editCss.edit}
-                  to={`/Edit/${id}`}
+                  to={`/MichaelRud99/ATONTestProject.io/Edit/${id}`}
                ></Link>
             </>
          ) : (

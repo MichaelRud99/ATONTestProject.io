@@ -2,6 +2,7 @@ import { CSSTransition } from "react-transition-group";
 import main from "../Main/main.module.css";
 import index from "../index.module.css";
 import patternForm from "../PatternForm/patternForm.module.css";
+
 const RequestAnswerGood = ({ selector, message, action }) => {
    return (
       <CSSTransition

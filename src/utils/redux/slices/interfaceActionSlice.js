@@ -9,29 +9,23 @@ export const interfaceActionSlice = createSlice({
       load: false,
       openRegistration: false,
       successRegistraton: false,
-      successDelete: false,
+      successDeleteAll: false,
       successLogin: false,
+      successAddUser: false,
+      successEdit: false,
+      successDelete: false,
+      successFail: false,
    },
    reducers: {
-      editTrue: (state) => {
-         state.edit = true;
+      edit: (state, bool) => {
+         state.edit = bool.payload;
       },
-      editFalse: (state) => {
-         state.edit = false;
+      open: (state, bool) => {
+         state.open = bool.payload;
       },
-      openTrue: (state) => {
-         state.open = true;
+      valid: (state, bool) => {
+         state.valid = bool.payload;
       },
-      openFalse: (state) => {
-         state.open = false;
-      },
-      validTrue: (state) => {
-         state.valid = true;
-      },
-      validFalse: (state) => {
-         state.valid = false;
-      },
-
       load: (state, bool) => {
          state.load = bool.payload;
       },
@@ -44,27 +38,44 @@ export const interfaceActionSlice = createSlice({
          state.successRegistraton = bool.payload;
       },
 
-      successDelete: (state, bool) => {
-         state.successDelete = bool.payload;
+      successDeleteAll: (state, bool) => {
+         state.successDeleteAll = bool.payload;
       },
 
       successLogin: (state, bool) => {
          state.successLogin = bool.payload;
       },
+
+      successAddUser: (state, bool) => {
+         state.successAddUser = bool.payload;
+      },
+
+      successEdit: (state, bool) => {
+         state.successEdit = bool.payload;
+      },
+
+      successDelete: (state, bool) => {
+         state.successDelete = bool.payload;
+      },
+
+      successFail: (state, message) => {
+         state.successFail = message.payload;
+      },
    },
 });
 
 export const {
-   editTrue,
-   editFalse,
-   openTrue,
-   openFalse,
-   validTrue,
-   validFalse,
+   edit,
+   open,
+   valid,
    load,
    openRegistrations,
    successRegistraton,
    successLogin,
+   successAddUser,
+   successEdit,
+   successDelete,
+   successFail,
 } = interfaceActionSlice.actions;
 
 export default interfaceActionSlice.reducer;

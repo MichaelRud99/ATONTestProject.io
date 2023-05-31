@@ -1,14 +1,15 @@
 @charset "UTF-8";
 .body {
   position: fixed;
-  top: 30vh;
-  left: 70vh;
+  top: -25%;
+  left: 25%;
   right: 0px;
   bottom: 0px;
-  background-color: var(--form-background);
+  margin: auto;
   padding: 10px;
+  background-color: var(--form-background);
   width: 700px;
-  height: 420px;
+  height: 330px;
   border-radius: 10px;
   border-style: solid;
   border-color: transparent;
@@ -103,14 +104,15 @@
 }
 
 .move {
-  width: 50px;
   margin-left: auto;
+  width: 50px;
+  height: 30px;
 }
 
 .btnFooter {
   display: flex;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 30px;
   gap: 70px;
   grid-column: span 2;
   justify-content: center;
@@ -123,11 +125,9 @@
 }
 
 .flex {
-  display: grid;
-  grid-column: span 2;
-  gap: 10px;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 35px;
+  margin-top: 15px;
 }
 
 .addPhoto {
@@ -159,6 +159,7 @@ p {
   height: 30px;
   opacity: 0;
   position: absolute;
+  top: 170px;
   cursor: pointer;
 }
 

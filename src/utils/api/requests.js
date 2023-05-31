@@ -1,4 +1,4 @@
-function requests(data, method, id) {
+function requests(data, method, idUser) {
    return new Promise((resolve, reject) => {
       const XHR = new XMLHttpRequest();
 
@@ -10,23 +10,20 @@ function requests(data, method, id) {
          }
       };
 
-      let urlEncodedData = "",
-         urlEncodedDataPairs = [],
-         name;
-
-      for (name in data) {
-         urlEncodedDataPairs.push(
-            encodeURIComponent(name) + "=" + encodeURIComponent(data[name])
-         );
-      }
-      urlEncodedData = urlEncodedDataPairs.join("&").replace(/%20/g, "+");
-      if (id === undefined) {
-         XHR.open(method, "http://localhost:4200/storage");
+      if (idUser !== undefined) {
+         XHR.open(method, "https://reqres.in/api/users/" + idUser);
       } else {
-         XHR.open(method, "http://localhost:4200/storage/" + id);
+         XHR.open(method, "https://reqres.in/api/users/");
       }
-      XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      XHR.send(urlEncodedData);
+
+      XHR.setRequestHeader("Access-Control-Allow-Origin", "https://reqres.in/api.com");
+      XHR.setRequestHeader("Access-Control-Allow-Credentials", "true");
+      XHR.setRequestHeader(
+         "Access-Control-Allow-Headers",
+         "Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken"
+      );
+      XHR.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+      XHR.send(data);
    });
 }
 

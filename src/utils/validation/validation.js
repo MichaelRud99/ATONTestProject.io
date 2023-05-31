@@ -1,13 +1,13 @@
 import validationText from "./validationText/validationText";
-import validationDate from "./validationDate/validationDate";
+import validationEmail from "./validationEmail/validationEmail";
 
-const validation = (firstName, lastName, email, avatar) => {
+const validation = (firstName, lastName, email = "email@gmail.com") => {
    let answer = false;
+   debugger;
    if (
       validationText(firstName) === true &&
       validationText(lastName) === true &&
-      validationText(email) === true &&
-      validationDate(avatar) === true
+      validationEmail(email) === true
    ) {
       answer = true;
    } else {

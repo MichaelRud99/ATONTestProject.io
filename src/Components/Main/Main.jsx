@@ -1,15 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux/";
-import { CSSTransition } from "react-transition-group";
 
 import { useActions } from "../Hooks/useActotion";
-import { listCompositionSlice } from "../../utils/redux/slices/listComposition";
+import { listDataSlice } from "../../utils/redux/slices/listData";
 import { interfaceActionSlice } from "../../utils/redux/slices/interfaceActionSlice";
 import {
    selectLoginFields,
    selectorInterface,
-   selectorListComposition,
+   selectorListData,
 } from "../../utils/redux/selectors";
 
 import BtnCreate from "../BtnCreate";
@@ -20,10 +19,11 @@ import RequestAnswerGood from "../RequestAnswers/RequestAnswerGood";
 import "../transitionComponents.css";
 import main from "./main.module.css";
 import Loader from "../Loader/Loader";
+import RequestAnswerBad from "../RequestAnswers/RequestAnswerBad";
 
 const Main = () => {
-   const compositions = useSelector(selectorListComposition);
-   const listCompositionAction = useActions(listCompositionSlice.actions);
+   const listData = useSelector(selectorListData);
+   const listDataAction = useActions(listDataSlice.actions);
    const interfaceSelector = useSelector(selectorInterface);
    const interfaceAction = useActions(interfaceActionSlice.actions);
    const loginFields = useSelector(selectLoginFields);
@@ -37,23 +37,15 @@ const Main = () => {
 
    useEffect(() => {
       if (sessionStorage.getItem("User") !== null) {
-         listCompositionAction.readData();
+         listDataAction.readData();
       }
-      setStorage(compositions.data);
+      setStorage(listData.data);
    }, []);
 
    useEffect(() => {
-      setStorage(compositions.data);
+      setStorage(listData.data);
       interfaceAction.load(false);
-   }, [compositions.data.length, compositions.data.page]);
-
-   useEffect(() => {
-      if (compositions.fail === true) {
-         setTimeout(() => {
-            listCompositionAction.requestFail();
-         }, timeNotification);
-      }
-   }, [compositions.fail]);
+   }, [listData.data.length, listData.data.page]);
 
    useEffect(() => {
       if (interfaceSelector.successRegistraton === true) {
@@ -61,10 +53,7 @@ const Main = () => {
             interfaceAction.successRegistraton(false);
          }, timeNotification);
       }
-      if (
-         interfaceSelector.successLogin === true &&
-         sessionStorage.getItem("User") === null
-      ) {
+      if (interfaceSelector.successLogin === true && sessionStorage.getItem("User") === null) {
          sessionStorage.setItem(
             "User",
             JSON.stringify({
@@ -79,27 +68,50 @@ const Main = () => {
    }, [interfaceSelector.successRegistraton, interfaceSelector.successLogin]);
 
    useEffect(() => {
+      if (interfaceSelector.successFail[1] === true) {
+         setTimeout(() => {
+            interfaceAction.successFail([interfaceSelector.successFail[0], false]);
+         }, timeNotification);
+      }
+   }, [interfaceSelector.successFail[1]]);
+
+   useEffect(() => {
+      if (interfaceSelector.successDeleteAll === true) {
+         setTimeout(() => {
+            interfaceAction.successDeleteAll(false);
+         }, timeNotification);
+      }
+      if (interfaceSelector.successAddUser === true) {
+         setTimeout(() => {
+            interfaceAction.successAddUser(false);
+         }, timeNotification);
+      }
+      if (interfaceSelector.successEdit === true) {
+         setTimeout(() => {
+            interfaceAction.successEdit(false);
+         }, timeNotification);
+      }
       if (interfaceSelector.successDelete === true) {
          setTimeout(() => {
             interfaceAction.successDelete(false);
          }, timeNotification);
       }
-   }, [interfaceSelector.successDelete]);
+   }, [
+      interfaceSelector.successDeleteAll,
+      interfaceSelector.successAddUser,
+      interfaceSelector.successEdit,
+      interfaceSelector.successDelete,
+   ]);
 
    return (
       <>
          {storage.length === 0 ? (
             <>
                <section className={main.flex}>
-                  {sessionStorage.getItem("User") === null &&
-                  interfaceSelector.load === false ? (
+                  {sessionStorage.getItem("User") === null && interfaceSelector.load === false ? (
                      <>
                         <h1 className={main.title}>Авторизуйтесь в системе</h1>
-                        <BtnCreate
-                           storage={storage}
-                           setOpen={setOpen}
-                           open={isOpen}
-                        />
+                        <BtnCreate storage={storage} setOpen={setOpen} open={isOpen} />
                      </>
                   ) : (
                      <>
@@ -131,9 +143,9 @@ const Main = () => {
          )}
 
          <RequestAnswerGood
-            selector={interfaceSelector.successDelete}
+            selector={interfaceSelector.successDeleteAll}
             message={"Данные удалены"}
-            action={interfaceAction.successDelete}
+            action={interfaceAction.successDeleteAll}
          />
 
          <RequestAnswerGood
@@ -142,17 +154,28 @@ const Main = () => {
             action={interfaceAction.successLogin}
          />
 
-         <CSSTransition
-            in={compositions.fail}
-            timeout={900}
-            classNames="network-error"
-            mountOnEnter
-            unmountOnExit
-         >
-            <div className={main.networkError}>
-               Ошибка: неудалось отправить запрос
-            </div>
-         </CSSTransition>
+         <RequestAnswerGood
+            selector={interfaceSelector.successAddUser}
+            message={"Пользователь добавлен"}
+            action={interfaceAction.successAddUser}
+         />
+
+         <RequestAnswerGood
+            selector={interfaceSelector.successEdit}
+            message={"Пользователь изменён"}
+            action={interfaceAction.successEdit}
+         />
+
+         <RequestAnswerGood
+            selector={interfaceSelector.successDelete}
+            message={"Пользователь удалён"}
+            action={interfaceAction.successDelete}
+         />
+         <RequestAnswerBad
+            selector={interfaceSelector.successFail}
+            message={"Ошибка "}
+            action={interfaceAction.successFail}
+         />
       </>
    );
 };

@@ -8,7 +8,6 @@ import patternTr from "./patternTr.module.css";
 
 const PatternTr = ({
    storage,
-   setStorage,
    index,
    id,
    firstName,
@@ -29,7 +28,7 @@ const PatternTr = ({
          <BrowserRouter>
             <Routes>
                <Route
-                  path="/"
+                  path="/MichaelRud99/ATONTestProject.io"
                   element={
                      <>
                         <td>
@@ -39,14 +38,12 @@ const PatternTr = ({
                   }
                >
                   <Route
-                     path="Edit/:lang"
+                     path="/MichaelRud99/ATONTestProject.ioEdit/:lang"
                      element={
                         <EditForm
                            storage={storage}
-                           setStorage={setStorage}
                            index={index}
                            firstName={firstName}
-                           avatar={avatar}
                            lastName={lastName}
                            email={email}
                            setOpen={setOpen}

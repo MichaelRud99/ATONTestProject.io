@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .flex {
   display: flex;
   margin: 150px auto 0% auto;
@@ -78,11 +79,11 @@
   bottom: 5%;
   right: 2%;
   text-align: center;
-  padding: 20px 0px;
   background-color: var(--network-error);
   border-radius: 10px;
+  justify-content: space-between;
   width: 300px;
-  height: 20px;
+  height: auto;
   border: 10px solid transparent;
 }
 @media (max-width: 1800px) {
@@ -109,15 +110,36 @@
   height: auto;
   border: 10px solid transparent;
 }
+@media (max-width: 1800px) {
+  .registrationSuccess {
+    padding: 5px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    width: 250px;
+    height: 20px;
+  }
+}
 
 .registrationSuccess div {
   width: 50px;
   height: 50px;
-  background-image: url(../../../public/img/pngwing.com.png);
+  background-image: url("../../../public/img/pngwing.com.png");
   background-size: cover;
 }
 
 .registrationSuccess p {
+  margin: auto;
+}
+
+.networkError div {
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../public/img/icons8-отмена-48.png");
+  background-size: cover;
+}
+
+.networkError p {
   margin: auto;
 }
 

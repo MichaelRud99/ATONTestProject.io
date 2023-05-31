@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { requestFail } from "../slices/listComposition";
+import { successFail } from "../slices/interfaceActionSlice";
 
 export function* checkSuccess(
    requestAnswer,
@@ -16,7 +16,7 @@ export function* checkSuccess(
          yield put(messageSuccess(true));
       }
    } else {
-      yield put(requestFail());
+      yield put(successFail([requestAnswer, true]));
    }
 }
 export default checkSuccess;

@@ -4,7 +4,7 @@ import { selectorInterfaceEdit, selectorInterfaceValid } from "../../../utils/re
 import editValidation from "../../../utils/validation/editValidation";
 import validation from "../validation.module.css";
 
-const ValidDate = ({ validationDate, initialValue, outputValue, setValue }) => {
+const ValidEmail = ({ validationEmail, initialValue, outputValue, setValue }) => {
    const edit = useSelector(selectorInterfaceEdit);
    const validFail = useSelector(selectorInterfaceValid);
 
@@ -21,23 +21,21 @@ const ValidDate = ({ validationDate, initialValue, outputValue, setValue }) => {
          <input
             defaultValue={initialValue}
             onChange={changeValue}
-            type="date"
+            type="text"
             className={
-               validationDate(outputValue) === false && validFail === false
+               validationEmail(outputValue) === false && validFail === false
                   ? validation.input + " " + validation.error
                   : validation.input
             }
          ></input>
          <>
-            {validationDate(outputValue) === false && validFail === false && (
-               <div
-                  className={validation.distance + " " + validation.validation}
-               >
-                  <label>Используются неккоректные символы!</label>
+            {validationEmail(outputValue) === false && validFail === false && (
+               <div className={validation.distance + " " + validation.validation}>
+                  <label>Неккоректный адресс!</label>
                </div>
             )}
          </>
       </>
    );
 };
-export default ValidDate;
+export default ValidEmail;

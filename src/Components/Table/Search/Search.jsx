@@ -5,17 +5,11 @@ import { useSearchParams } from "react-router-dom";
 import searchLetters from "../../../utils/searchLetters/searchLetters";
 import { useSelector } from "react-redux";
 
-import { selectorListCompositionData } from "../../../utils/redux/selectors";
+import { selectorListDataData } from "../../../utils/redux/selectors";
 
-const Search = ({
-   setStorage,
-   searchValue,
-   setSearchValue,
-   setCheckSearch,
-   setInProp,
-}) => {
+const Search = ({ setStorage, searchValue, setSearchValue, setCheckSearch, setInProp }) => {
    let [, setSearchParams] = useSearchParams();
-   const compositions = useSelector(selectorListCompositionData);
+   const listData = useSelector(selectorListDataData);
 
    const changes = (event) => {
       setSearchValue(event.target.value);
@@ -23,25 +17,17 @@ const Search = ({
 
    const submit = (event) => {
       searchValue = searchValue.toLowerCase();
-      const searchId = compositions.filter(
-         (element) => element.id === searchValue
-      );
-      const SearchAuthor = compositions.map((value) =>
-         value.firstName.toLowerCase()
-      );
-      const SearchTrack = compositions.map((value) =>
-         value.lastName.toLowerCase()
-      );
-      const SearchAlbum = compositions.map((value) =>
-         value.email.toLowerCase()
-      );
+      const searchId = listData.filter((element) => element.id === searchValue);
+      const SearchAuthor = listData.map((value) => value.firstName.toLowerCase());
+      const SearchTrack = listData.map((value) => value.lastName.toLowerCase());
+      const SearchAlbum = listData.map((value) => value.email.toLowerCase());
       let currentStorage = [];
       let answer = [];
       let uniqueArray = [];
 
       if (event.target.value === "") {
          setInProp(false);
-         setStorage(compositions);
+         setStorage(listData);
          setCheckSearch("found");
       } else if (searchId.length > 0) {
          setStorage(searchId);
@@ -49,7 +35,7 @@ const Search = ({
       } else if (searchLetters(searchValue, SearchAuthor).length > 0) {
          uniqueArray = searchLetters(searchValue, SearchAuthor);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = compositions.filter(
+            const storageSearch = listData.filter(
                (element) => element.firstName.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
@@ -61,7 +47,7 @@ const Search = ({
       } else if (searchLetters(searchValue, SearchTrack).length > 0) {
          uniqueArray = searchLetters(searchValue, SearchTrack);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = compositions.filter(
+            const storageSearch = listData.filter(
                (element) => element.lastName.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
@@ -73,7 +59,7 @@ const Search = ({
       } else if (searchLetters(searchValue, SearchAlbum).length > 0) {
          uniqueArray = searchLetters(searchValue, SearchAlbum);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = compositions.filter(
+            const storageSearch = listData.filter(
                (element) => element.email.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);

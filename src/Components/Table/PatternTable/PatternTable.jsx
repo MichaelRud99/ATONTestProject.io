@@ -13,7 +13,7 @@ import table from "./table.module.css";
 
 import "../../transitionComponents.css";
 
-const PatternTable = ({ storage, setStorage, setOpen, open }) => {
+const PatternTable = ({ storage, setOpen, open }) => {
    const [checkSearch, setCheckSearch] = useState("found");
    const [searchValue, setSearchValue] = useState("");
    const [inProp, setInProp] = useState(false);
@@ -27,11 +27,10 @@ const PatternTable = ({ storage, setStorage, setOpen, open }) => {
             <BrowserRouter>
                <Routes>
                   <Route
-                     path="/"
+                     path="/MichaelRud99/ATONTestProject.io"
                      element={
                         <div className={table.flex}>
                            <Search
-                              setStorage={setStorage}
                               setCheckSearch={setCheckSearch}
                               searchValue={searchValue}
                               setSearchValue={setSearchValue}
@@ -44,7 +43,6 @@ const PatternTable = ({ storage, setStorage, setOpen, open }) => {
                                  setSearchValue={setSearchValue}
                                  inProp={inProp}
                                  setInProp={setInProp}
-                                 setStorage={setStorage}
                               />
                               <DeleteAll />
                               <AddUsers
@@ -82,7 +80,6 @@ const PatternTable = ({ storage, setStorage, setOpen, open }) => {
                            >
                               <PatternTr
                                  storage={storage}
-                                 setStorage={setStorage}
                                  key={value.id}
                                  id={value.id}
                                  index={index}

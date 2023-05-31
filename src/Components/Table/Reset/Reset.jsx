@@ -15,7 +15,7 @@ const Reset = ({
 }) => {
 
    const rst = () => {
-      history.push(`/monsegard3.github.io/`);
+      history.push(`/MichaelRud99/ATONTestProject.io`);
       setSearchValue("");
       setCheckSearch("found");
       setInProp(false);

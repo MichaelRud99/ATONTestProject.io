@@ -2,14 +2,14 @@
 import React, { useRef, useState } from "react";
 import patternForm from "../patternForm.module.css";
 import { useActions } from "../../Hooks/useActotion";
-import { editFieldsSlice } from "../../../utils/redux/slices/editFieldsSlice";
+import { loginFieldsSlice } from "../../../utils/redux/slices/loginFieldsSlice";
 import { listDataSlice } from "../../../utils/redux/slices/listData";
 import { useSelector } from "react-redux";
 import { selectorListData } from "../../../utils/redux/selectors";
 import { useEffect } from "react";
 
 const DownloadPhoto = () => {
-   const inputFields = useActions(editFieldsSlice.actions);
+   const inputFields = useActions(loginFieldsSlice.actions);
    const listData = useSelector(selectorListData);
    const listDataAction = useActions(listDataSlice.actions);
    const inputImg = useRef(null);

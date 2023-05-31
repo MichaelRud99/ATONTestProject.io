@@ -41,13 +41,7 @@ const RequestAnswerBad = ({ selector, message, action }) => {
             </p>
             <button
                onClick={() => action([selector[0], false])}
-               className={
-                  patternForm.btn +
-                  " " +
-                  patternForm.close +
-                  " " +
-                  index.transitionColor
-               }
+               className={patternForm.btn + " " + patternForm.close + " " + index.transitionColor}
             ></button>
          </div>
       </CSSTransition>

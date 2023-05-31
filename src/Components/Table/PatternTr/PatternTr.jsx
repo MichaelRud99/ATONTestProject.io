@@ -6,16 +6,7 @@ import PreEdit from "../Edit/PreEdit";
 
 import patternTr from "./patternTr.module.css";
 
-const PatternTr = ({
-   storage,
-   index,
-   id,
-   firstName,
-   lastName,
-   email,
-   avatar,
-   setOpen,
-}) => {
+const PatternTr = ({ storage, index, id, firstName, lastName, email, avatar, setOpen }) => {
    return (
       <tr>
          <td className={patternTr.id}>{id}</td>

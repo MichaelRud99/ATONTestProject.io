@@ -20,7 +20,6 @@ const AddUsers = ({ setOpen, open }) => {
    const add = () => {
       let tmp = {};
       tmp.id = Math.round(Date.now() / 1000);
-      console.log(tmp.id);
       tmp.firstName = firstName;
       tmp.password = lastName;
       tmp.email = email;

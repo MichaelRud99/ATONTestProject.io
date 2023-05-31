@@ -9,9 +9,7 @@ const BtnCreate = ({ storage, setOpen, open }) => {
       <>
          <input
             onClick={() => setOpen(true)}
-            className={
-               main.btn + " " + btnCreate.btn + " " + indexCss.transitionBtn
-            }
+            className={main.btn + " " + btnCreate.btn + " " + indexCss.transitionBtn}
             defaultValue="Авторизация"
             type="button"
          ></input>

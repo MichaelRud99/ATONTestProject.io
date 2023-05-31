@@ -17,13 +17,7 @@ const RequestAnswerGood = ({ selector, message, action }) => {
             <p>{message}</p>
             <button
                onClick={() => action(false)}
-               className={
-                  patternForm.btn +
-                  " " +
-                  patternForm.close +
-                  " " +
-                  index.transitionColor
-               }
+               className={patternForm.btn + " " + patternForm.close + " " + index.transitionColor}
             ></button>
          </div>
       </CSSTransition>

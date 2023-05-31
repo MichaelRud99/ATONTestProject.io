@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["footer.module.scss"],"names":[],"mappings":"AAAA;EACG;EACA;;;AAEH;EACG;EACA;;;AAEH;EACG;;;AAGH;EACG;EACA;;;AAGH;EACG;;;AAIA;EADH;IAEM","file":"footer.module.css"}
+{
+   "version": 3,
+   "sourceRoot": "",
+   "sources": [
+      "footer.module.scss"
+   ],
+   "names": [],
+   "mappings": "AAAA;EACG;EACA;;;AAEH;EACG;EACA;;;AAEH;EACG;;;AAGH;EACG;EACA;;;AAGH;EACG;;;AAIA;EADH;IAEM",
+   "file": "footer.module.css"
+}

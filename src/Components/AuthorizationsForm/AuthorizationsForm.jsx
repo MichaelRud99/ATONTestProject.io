@@ -28,12 +28,9 @@ const AuthorizationsForm = ({ setOpen }) => {
    const password = loginFields.password;
 
    const registration = (event) => {
-      debugger;
-      console.log("username", username, password, email);
       if (validation(username, password, email) === true) {
          let tmp = {};
          tmp.id = Math.round(Date.now() / 1000);
-         console.log(tmp.id);
          tmp.username = username;
          tmp.email = email;
          tmp.password = password;
@@ -49,7 +46,6 @@ const AuthorizationsForm = ({ setOpen }) => {
    };
 
    const login = (event) => {
-      debugger;
       if (validation(username, password) === true) {
          interfaceAction.valid(true);
          setOpen(false);

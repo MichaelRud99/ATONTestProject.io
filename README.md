@@ -1,4 +1,4 @@
-<h1 align="center">Create sample music</h1>
+<h1 align="center">Frontend ATON test project</h1>
 
 ## Table of Contents
 
@@ -11,9 +11,9 @@
 
 ## Overview
 
-<h4 align="center">starging page</h4>
+<h4 align="center">starting page</h4>
 
-![screenshot](./public/img/imgREADME/startingWindow.PNG)
+![screenshot](./public/imgREADME/startingWindow.PNG)
 
 <h4 align="center">authorization page</h4>
 
@@ -45,8 +45,7 @@
 
 ### Built With
 
-The project is built on a JS-library for creating a user interface React using
-libraries:
+The project is built on a JS-library for creating a user interface React using libraries:
 
 -  react-redux
 -  react-router
@@ -59,11 +58,14 @@ libraries:
 ## How To Use
 
 For correct use, you need to install the following dependencies
+
 1. npm ci
 2. npm run start
 
 ## codeStyle
-this project uses the code style standard configured with <strong>Prettier</strong> with standard settings
+
+this project uses the code style standard configured with <strong>Prettier</strong> with standard
+settings
 
 ## Acknowledgements
 

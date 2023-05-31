@@ -1,19 +1,19 @@
 .fakeEdit,
 .edit {
-    color: var(--white-almost);
+   color: var(--white-almost);
 }
 
 .fakeEdit::after,
 .edit::after {
-    content: "\1F4CB";
-    font-size: 25px;
-    background-color: transparent;
+   content: "\1F4CB";
+   font-size: 25px;
+   background-color: transparent;
 }
 
 .edit:hover {
-    color: var(--btn-close-hover);
+   color: var(--btn-close-hover);
 }
 
 .fakeEdit {
-    cursor: default;
+   cursor: default;
 }

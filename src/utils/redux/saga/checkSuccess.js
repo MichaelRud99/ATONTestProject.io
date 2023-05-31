@@ -7,7 +7,6 @@ export function* checkSuccess(
    value = -1,
    actionSuccess = undefined
 ) {
-   debugger;
    if (requestAnswer <= 400) {
       if (value !== -1 && actionSuccess !== undefined) {
          yield put(actionSuccess(value));

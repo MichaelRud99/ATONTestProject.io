@@ -2,12 +2,9 @@ import React from "react";
 import validation from "../validation.module.css";
 import { useSelector } from "react-redux";
 import editValidation from "../../../utils/validation/editValidation";
-import {
-   selectorInterfaceEdit,
-   selectorInterfaceValid,
-} from "../../../utils/redux/selectors";
+import { selectorInterfaceEdit, selectorInterfaceValid } from "../../../utils/redux/selectors";
 
-const  ValidText = ({ validationText, initialValue, outputValue, setValue }) => {
+const ValidText = ({ validationText, initialValue, outputValue, setValue }) => {
    const edit = useSelector(selectorInterfaceEdit);
    const validFail = useSelector(selectorInterfaceValid);
 
@@ -33,9 +30,7 @@ const  ValidText = ({ validationText, initialValue, outputValue, setValue }) => 
          ></input>
          <>
             {validationText(outputValue) === false && validFail === false && (
-               <div
-                  className={validation.distance + " " + validation.validation}
-               >
+               <div className={validation.distance + " " + validation.validation}>
                   <label>Используются неккоректные символы!</label>
                </div>
             )}

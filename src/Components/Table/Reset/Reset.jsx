@@ -7,13 +7,7 @@ import history from "../../../utils/history/history";
 
 import "../../transitionComponents.css";
 
-const Reset = ({
-   setCheckSearch,
-   setSearchValue,
-   inProp,
-   setInProp,
-}) => {
-
+const Reset = ({ setCheckSearch, setSearchValue, inProp, setInProp }) => {
    const rst = () => {
       history.push(`/MichaelRud99/ATONTestProject.io`);
       setSearchValue("");
@@ -22,19 +16,11 @@ const Reset = ({
    };
 
    return (
-      <CSSTransition
-         in={inProp}
-         timeout={200}
-         classNames="my-node"
-         mountOnEnter
-         unmountOnExit
-      >
+      <CSSTransition in={inProp} timeout={200} classNames="my-node" mountOnEnter unmountOnExit>
          <input
             onClick={rst}
             type="button"
-            className={
-               main.btn + " " + reset.btn + " " + indexCss.transitionBtn
-            }
+            className={main.btn + " " + reset.btn + " " + indexCss.transitionBtn}
             defaultValue="Сбросить"
          ></input>
       </CSSTransition>

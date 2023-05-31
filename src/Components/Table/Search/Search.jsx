@@ -17,7 +17,7 @@ const Search = ({ setStorage, setSearchValue, searchValue, setCheckSearch, setIn
 
    const submit = (event) => {
       searchValue = searchValue.toLowerCase();
-      const searchId = listData.data.filter((element) =>element.id === searchValue*1);
+      const searchId = listData.data.filter((element) => element.id === searchValue * 1);
       const SearchAuthor = listData.data.map((value) => value.first_name.toLowerCase());
       const SearchTrack = listData.data.map((value) => value.last_name.toLowerCase());
       const SearchAlbum = listData.data.map((value) => value.email.toLowerCase());
@@ -32,7 +32,6 @@ const Search = ({ setStorage, setSearchValue, searchValue, setCheckSearch, setIn
          setStorage({ data: searchId });
          setCheckSearch("found");
       } else if (searchLetters(searchValue, SearchAuthor).length > 0) {
-
          uniqueArray = searchLetters(searchValue, SearchAuthor);
          for (let w = 0; w < uniqueArray.length; w++) {
             const storageSearch = listData.data.filter(

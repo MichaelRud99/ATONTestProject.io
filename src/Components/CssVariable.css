@@ -1,45 +1,45 @@
 :root {
-    --white: white;
-    --black: black;
-    --grey: grey;
+   --white: white;
+   --black: black;
+   --grey: grey;
 
-    --white-almost: #f5f5f5;
-    --light-grey: #c5c5c5;
+   --white-almost: #f5f5f5;
+   --light-grey: #c5c5c5;
 
-    --btn-create-text: #eff3f2;
-    --btn-create: #383961;
-    --btn-create-hover: #252641;
-    --btn-fast-view: #c3f572b2;
-    --btn-fast-view-hover: #c3f572;
-    --btn-reset: #08429b45;
-    --btn-reset-text: bisque;
-    --btn-delete: #950f21;
-    --btn-delete-hover: #5d0914;
-    --btn-close: #34355b;
-    --btn-close-hover: #ba1229;
-    --btn-change: rgba(122, 179, 206, 0.507);
-    --btn-change-hover: rgba(47, 104, 170, 0.452);
-    --btn-border: #89923A;
+   --btn-create-text: #eff3f2;
+   --btn-create: #383961;
+   --btn-create-hover: #252641;
+   --btn-fast-view: #c3f572b2;
+   --btn-fast-view-hover: #c3f572;
+   --btn-reset: #08429b45;
+   --btn-reset-text: bisque;
+   --btn-delete: #950f21;
+   --btn-delete-hover: #5d0914;
+   --btn-close: #34355b;
+   --btn-close-hover: #ba1229;
+   --btn-change: rgba(122, 179, 206, 0.507);
+   --btn-change-hover: rgba(47, 104, 170, 0.452);
+   --btn-border: #89923a;
 
-    --list-background: #132938dc;
-    --search-focus: #82b1d357;
+   --list-background: #132938dc;
+   --search-focus: #82b1d357;
 
-    --tr-delete: #787c77b4;
+   --tr-delete: #787c77b4;
 
-    --network-error:#921111;
-    --error: rgba(228, 130, 180, 0.74);
+   --network-error: #921111;
+   --error: rgba(228, 130, 180, 0.74);
 
-    --form-background: #2f5d77;
-    --form-input: rgb(0, 0, 0);
-    --form-input-border: #F4F0E9;
-    --form-input-hover: #F4F0E9;
-    --form-input-focus-border: #A6A6A6;
-    --form-btn: #286562;
-    --form-btn-hover: rgba(59, 126, 123, 1);
+   --form-background: #2f5d77;
+   --form-input: rgb(0, 0, 0);
+   --form-input-border: #f4f0e9;
+   --form-input-hover: #f4f0e9;
+   --form-input-focus-border: #a6a6a6;
+   --form-btn: #286562;
+   --form-btn-hover: rgba(59, 126, 123, 1);
 
-    --description-paragraf: #ecd5d57d;
+   --description-paragraf: #ecd5d57d;
 
-    --search-input-hover: #9799C3;
+   --search-input-hover: #9799c3;
 
-    --transition-enter: #252541b9;
+   --transition-enter: #252541b9;
 }

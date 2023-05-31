@@ -4,17 +4,14 @@ const Footer = () => {
    return (
       <section className={footer.section}>
          <h4 className={footer.title}>Created by Michael Rudenok</h4>
-         <div className={index.flex+" "+ footer.linkContainer}>
+         <div className={index.flex + " " + footer.linkContainer}>
             <a
                className={footer.link + " " + index.transitionColor}
                href="https://github.com/MichaelRud99"
             >
                GitHub
             </a>
-            <a
-               className={footer.link + " " + index.transitionColor}
-               href="https://t.me/monsegard"
-            >
+            <a className={footer.link + " " + index.transitionColor} href="https://t.me/monsegard">
                Telegram
             </a>
          </div>

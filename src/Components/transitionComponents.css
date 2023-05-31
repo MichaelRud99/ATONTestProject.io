@@ -1,38 +1,38 @@
 .my-node-enter {
-    opacity: 0;
+   opacity: 0;
 }
 
 .my-node-enter-active {
-    opacity: 1;
-    transition: opacity 400ms;
-    background-color: var(--transition-enter);
+   opacity: 1;
+   transition: opacity 400ms;
+   background-color: var(--transition-enter);
 }
 
 .my-node-exit {
-    opacity: 1;
-    transition: opacity 500ms;
+   opacity: 1;
+   transition: opacity 500ms;
 }
 
 .my-node-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
+   opacity: 0;
+   transition: opacity 200ms;
 }
 
 .network-error-enter {
-    opacity: 0;
+   opacity: 0;
 }
 
 .network-error-enter-active {
-    opacity: 1;
-    transition: opacity 500ms;
+   opacity: 1;
+   transition: opacity 500ms;
 }
 
 .network-error-exit {
-    opacity: 1;
-    transition: opacity 500ms;
+   opacity: 1;
+   transition: opacity 500ms;
 }
 
 .network-error-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
+   opacity: 0;
+   transition: opacity 200ms;
 }

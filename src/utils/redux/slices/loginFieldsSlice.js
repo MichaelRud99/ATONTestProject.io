@@ -4,8 +4,9 @@ export const loginFieldsSlice = createSlice({
    name: "editFields",
    initialState: {
       username: "",
-      email:"",
+      email: "",
       password: "",
+      albumPhoto: "",
    },
 
    reducers: {
@@ -20,9 +21,13 @@ export const loginFieldsSlice = createSlice({
       enterPassword: (state, password) => {
          state.password = password.payload;
       },
+      enterAlbumPhoto: (state, albumPhoto) => {
+         state.albumPhoto = albumPhoto.payload;
+      },
    },
 });
 
-export const { enterUsername,enterEmail, enterPassword } = loginFieldsSlice.actions;
+export const { enterUsername, enterEmail, enterPassword, enterAlbumPhoto } =
+   loginFieldsSlice.actions;
 
 export default loginFieldsSlice.reducer;

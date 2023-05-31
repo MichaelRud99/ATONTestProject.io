@@ -60,7 +60,6 @@ export function* addUserGenerator(value) {
 }
 
 export function* deleteComposition(value) {
-   debugger;
    yield requests("", "DELETE", value.payload[0]).then(
       (result) => (requestAnswer = result),
       (err) => (requestAnswer = err)

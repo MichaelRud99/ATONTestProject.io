@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import { selectorListDataData } from "../../../utils/redux/selectors";
 
-const Search = ({ setStorage, searchValue, setSearchValue, setCheckSearch, setInProp }) => {
+const Search = ({ setStorage, setSearchValue, searchValue, setCheckSearch, setInProp }) => {
    let [, setSearchParams] = useSearchParams();
    const listData = useSelector(selectorListDataData);
 
@@ -17,55 +17,55 @@ const Search = ({ setStorage, searchValue, setSearchValue, setCheckSearch, setIn
 
    const submit = (event) => {
       searchValue = searchValue.toLowerCase();
-      const searchId = listData.filter((element) => element.id === searchValue);
-      const SearchAuthor = listData.map((value) => value.firstName.toLowerCase());
-      const SearchTrack = listData.map((value) => value.lastName.toLowerCase());
-      const SearchAlbum = listData.map((value) => value.email.toLowerCase());
+      const searchId = listData.data.filter((element) =>element.id === searchValue*1);
+      const SearchAuthor = listData.data.map((value) => value.first_name.toLowerCase());
+      const SearchTrack = listData.data.map((value) => value.last_name.toLowerCase());
+      const SearchAlbum = listData.data.map((value) => value.email.toLowerCase());
       let currentStorage = [];
       let answer = [];
       let uniqueArray = [];
-
       if (event.target.value === "") {
          setInProp(false);
          setStorage(listData);
          setCheckSearch("found");
       } else if (searchId.length > 0) {
-         setStorage(searchId);
+         setStorage({ data: searchId });
          setCheckSearch("found");
       } else if (searchLetters(searchValue, SearchAuthor).length > 0) {
+
          uniqueArray = searchLetters(searchValue, SearchAuthor);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = listData.filter(
-               (element) => element.firstName.toLowerCase() === uniqueArray[w]
+            const storageSearch = listData.data.filter(
+               (element) => element.first_name.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;
          }
-         setStorage(answer);
+         setStorage({ data: answer });
          setCheckSearch("found");
          setInProp(true);
       } else if (searchLetters(searchValue, SearchTrack).length > 0) {
          uniqueArray = searchLetters(searchValue, SearchTrack);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = listData.filter(
-               (element) => element.lastName.toLowerCase() === uniqueArray[w]
+            const storageSearch = listData.data.filter(
+               (element) => element.last_name.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;
          }
-         setStorage(answer);
+         setStorage({ data: answer });
          setCheckSearch("found");
          setInProp(true);
       } else if (searchLetters(searchValue, SearchAlbum).length > 0) {
          uniqueArray = searchLetters(searchValue, SearchAlbum);
          for (let w = 0; w < uniqueArray.length; w++) {
-            const storageSearch = listData.filter(
+            const storageSearch = listData.data.filter(
                (element) => element.email.toLowerCase() === uniqueArray[w]
             );
             answer = currentStorage.concat(storageSearch);
             currentStorage = answer;
          }
-         setStorage(answer);
+         setStorage({ data: answer });
          setCheckSearch("found");
          setInProp(true);
       } else {

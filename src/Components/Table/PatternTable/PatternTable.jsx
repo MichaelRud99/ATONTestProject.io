@@ -13,14 +13,13 @@ import table from "./table.module.css";
 
 import "../../transitionComponents.css";
 
-const PatternTable = ({ storage, setOpen, open }) => {
+const PatternTable = ({ storage, setStorage, setOpen, open }) => {
    const [checkSearch, setCheckSearch] = useState("found");
    const [searchValue, setSearchValue] = useState("");
    const [inProp, setInProp] = useState(false);
    let number = Array(storage.total_pages)
       .fill()
       .map((e, i) => i + 1);
-
    return (
       <>
          <div className={table.frame}>
@@ -31,6 +30,7 @@ const PatternTable = ({ storage, setOpen, open }) => {
                      element={
                         <div className={table.flex}>
                            <Search
+                              setStorage={setStorage}
                               setCheckSearch={setCheckSearch}
                               searchValue={searchValue}
                               setSearchValue={setSearchValue}
@@ -45,11 +45,7 @@ const PatternTable = ({ storage, setOpen, open }) => {
                                  setInProp={setInProp}
                               />
                               <DeleteAll />
-                              <AddUsers
-                                 storage={storage}
-                                 setOpen={setOpen}
-                                 open={open}
-                              />
+                              <AddUsers storage={storage} setOpen={setOpen} open={open} />
                            </div>
                         </div>
                      }
@@ -73,11 +69,7 @@ const PatternTable = ({ storage, setOpen, open }) => {
                   {checkSearch === "found" &&
                      storage.data.map((value, index) => {
                         return (
-                           <CSSTransition
-                              key={value.id}
-                              timeout={300}
-                              classNames="my-node"
-                           >
+                           <CSSTransition key={value.id} timeout={300} classNames="my-node">
                               <PatternTr
                                  storage={storage}
                                  key={value.id}
@@ -97,9 +89,7 @@ const PatternTable = ({ storage, setOpen, open }) => {
             </table>
 
             {checkSearch === "notFound" && (
-               <div className={table.notFound}>
-                  По вашему запросу ничего не найдено
-               </div>
+               <div className={table.notFound}>По вашему запросу ничего не найдено</div>
             )}
          </div>
          <div className={table.numberPage}>
